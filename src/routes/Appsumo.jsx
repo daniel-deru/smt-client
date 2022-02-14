@@ -1,8 +1,27 @@
-import React from 'react'
+import axios from "axios"
+import { useRef } from "react"
 
 import { AppSumoPage } from '../styled/AppSumo.styled'
 
 const Appsumo = () => {
+  const codeRef = useRef()
+  const firstNameRef = useRef()
+  const lastNameRef = useRef()
+  const emailRef = useRef()
+
+  const submit = async () => {
+    let payload = {
+      code: codeRef.current.value,
+      firstName: firstNameRef.current.value,
+      lastName: lastNameRef.current.value,
+      email: emailRef.current.value
+    }
+
+  
+    const check = await axios.post("http://localhost:8000/appsumo", payload)
+    const data = check.data
+    console.log(data)
+  }
   return (
     <AppSumoPage>
         <header>
@@ -23,22 +42,22 @@ const Appsumo = () => {
         <form>
             <div className="form-field">
               <label htmlFor="first-name">First Name</label>
-              <input type="text" />
+              <input type="text" ref={firstNameRef}/>
             </div>
             <div className="form-field">
               <label htmlFor="last-name">Last Name</label>
-              <input type="text" />
+              <input type="text" ref={lastNameRef}/>
             </div>
             <div className="form-field">
               <label htmlFor="email">Email</label>
-              <input type="text" />
+              <input type="text" ref={emailRef}/>
             </div>
             <div className="form-field">
               <label htmlFor="appsumo-code">AppSumo Code</label>
-              <input type="text" />
+              <input type="text" ref={codeRef}/>
             </div>
             <div className='form-field'>
-              <button>Let's Go</button>
+              <button type="button" onClick={() => submit()}>Let's Go</button>
             </div>
         </form>
     </AppSumoPage>
