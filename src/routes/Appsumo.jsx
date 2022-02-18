@@ -10,6 +10,37 @@ const Appsumo = () => {
   const emailRef = useRef()
 
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [messages, setMessages] = useState([])
+
+  const addMessage = (message) => {
+    setMessages((prevMessages) => [...prevMessages, message])
+  }
+
+
+  const verify = ({code, firstName, lastName, email}) => {
+    let nameRef = /[a-z\s]+/ig
+    let emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+    if(!nameRef.test(firstName)){
+      addMessage("First name is not a valid name")
+    }
+
+    if(!nameRef.test(lastName)){
+      addMessage("Last name is not a valid name")
+    }
+
+    if(!emailRegEx.test(email)){
+      addMessage("Your email is invalid")
+    }
+
+    if(messages.length == 0){
+      return true
+    } else {
+      return false
+    }
+
+
+  }
 
   const submit = async () => {
     let payload = {
@@ -19,13 +50,18 @@ const Appsumo = () => {
       email: emailRef.current.value
     }
 
-  
-    const check = await axios.post("http://localhost:8000/appsumo", payload)
-    const data = check.data
-    if(data.pass){
-      setSubmitSuccess(true)
+    let validData = verify(payload)
+    if(validData){
+      const check = await axios.post("http://localhost:8000/appsumo", payload)
+      const data = check.data
+      if(data.pass){
+        setSubmitSuccess(true)
+      }
     }
+
   }
+
+ 
   return (
     <AppSumoPage>
       
