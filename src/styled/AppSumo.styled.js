@@ -40,6 +40,7 @@ export const AppSumoPage = styled.main`
         h4 {
             color: ${({theme}) => theme.colors.green};
             font-size: 2em;
+            /* margin-top: -0.25rem; */
         }
     }
 
@@ -65,7 +66,7 @@ export const AppSumoPage = styled.main`
                 color: white;
             }
 
-            input {
+            .field {
                 display: block;
                 width: 100%;
                 font-size: 1.1em;
@@ -75,14 +76,15 @@ export const AppSumoPage = styled.main`
                 margin: auto;
                 background-color: transparent;
                 outline: none;
+                color: white;
 
                 &:focus {
-                    border: 1px solid ${({theme}) => theme.colors.orange};
+                    border: 1px solid ${({theme}) => theme.colors.lightBlue};
                 }
             }
 
             button {
-                background-color: ${({theme}) => theme.colors.lightBlue};
+                background-color: ${({theme}) => theme.colors.green};
                 color: white;
                 font-size: 1.1em;
                 padding: 0.5rem 4rem;
@@ -138,5 +140,26 @@ export const AppSumoPage = styled.main`
                 transition: 0s;
             }
         }
+    }
+
+    .error {
+        display: block;
+        width: 100%;
+        font-size: 1.1em;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid red;
+        margin: auto;
+        background-color: transparent;
+        outline: none;
+        color: white;
+
+        &:focus {
+            border: 1px solid ${({theme}) => theme.colors.lightBlue};
+        }
+    }
+
+    .error-message {
+        color: red;
     }
 `
