@@ -74,13 +74,19 @@ export const SignUpPage = styled.div`
                     color: white;
                     cursor: pointer;
                     border: 2px solid transparent;
+                    transition: 0.2s linear;
+
+                    &:hover {
+                        background-color: ${({theme}) => theme.colors.orange};
+                    }
 
                     &:active {
                         background-color: white;
                         background-color: transparent;
                         color: ${({theme}) => theme.colors.lightBlue};
                         color: white;
-                        border: 2px solid ${({theme}) => theme.colors.lightBlue};
+                        border: 2px solid ${({theme}) => theme.colors.orange};
+                        transition: 0s;
                     }
                 }
             }

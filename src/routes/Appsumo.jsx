@@ -32,7 +32,7 @@ const Appsumo = () => {
         <header>
             <img id='smt-logo' src="./images/SMT logo.svg" alt="" />
             <span className='separator'>&amp;</span>
-            <img id='appsumo-logo' src="./images/appsumo-logo.svg" alt="" />
+            <img id='appsumo-logo' src="./images/appsumo-logo-white.png" alt="" />
         </header>
         { !submitSuccess && <section>
           <h4>Hello Sumo-lings!</h4>
@@ -45,10 +45,10 @@ const Appsumo = () => {
           <p>Thank you for your support!</p>
         </section>}
         { submitSuccess && 
-          <section>
+          <section className="success">
             <h4>Thanks for your support</h4>
             <p>
-              You will receive an email with a link to create your free account where you can download your newly purchased product.
+              You will receive an email with a link to create your account where you can download your newly purchased product.
             </p>
             <p>
               If you did not receive an email please click the resend button or ask our support team.
@@ -79,7 +79,7 @@ const Appsumo = () => {
             </div>
         </form>}
         { submitSuccess && 
-          <div>
+          <div className="resend">
             <button>Resend Email</button>
           </div>
         }
