@@ -4,90 +4,86 @@ import { useRef, useState, useEffect } from "react"
 import { AppSumoPage } from '../styled/AppSumo.styled'
 
 const Appsumo = () => {
+  // Indexes for the errors
   const FIRSTNAME = 0
   const LASTNAME = 1
   const EMAIL = 2
   const CODE = 3
+
+  // Element references to get the data from the input
   const codeRef = useRef()
   const firstNameRef = useRef()
   const lastNameRef = useRef()
   const emailRef = useRef()
 
+  // success state if the submit was successfull
   const [submitSuccess, setSubmitSuccess] = useState(false)
-  const [firstNameError, setFirstNameError] = useState("")
-  const [lastNameError, setLastNameError] = useState("")
-  const [emailError, setEmailError] = useState("")
-  const [codeError, setcodeError] = useState("")
+  // errors state array for the errors
   const [errors, setErrors] = useState([])
 
-
+  // verify the data before submitting it
   const verify = async ({code, firstName, lastName, email}) => {
-    let nameRef = /^[a-zA-Z\s]*$/gi
-    let emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    
-    // setFirstNameError("")
-    // setLastNameError("")
-    // setEmailError("")
-    // setcodeError("")
-    setErrors([])
+    // local errorArray to keep track of errors without changing state
     let errorArray = []
 
+    // Regex for testing
+    let firstNameRegEx = /^[a-zA-Z\s]*$/gi
+    let lastNameRegEx = /^[a-zA-Z\s]*$/gi
+    let emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    
+    // clear previous errors
+    setErrors([])
+   
+    // Check if firstname exists and is valid
     if(!firstName){
       errorArray[FIRSTNAME] = "First name cannot be empty."
-      // setErrors((prevErrors) => prevErrors[FIRSTNAME] = "First name cannot be empty.")
-      // setFirstNameError("First name cannot be empty.")
-    }else if(!nameRef.test(firstName)){
-      errorArray[FIRSTNAME] = "First name cannot be empty."
-      // setErrors((prevErrors) => prevErrors[FIRSTNAME] = "First name is not a valid name.")
-      // setFirstNameError("First name is not a valid name.")
+      setErrors(errorArray)
+    } else if(!firstNameRegEx.test(firstName)){
+      errorArray[FIRSTNAME] = "First name is not valid."
+      setErrors(errorArray)
     }
 
+    // Check if lastname exists and is valid
     if(!lastName){
-      errorArray[FIRSTNAME] = "First name cannot be empty."
-      // setErrors((prevErrors) => prevErrors[LASTNAME] = "Last Name cannot be empty.")
-      // setLastNameError("Last Name cannot be empty.")
-    } else if(!nameRef.test(lastName)){
-      
-      errorArray[FIRSTNAME] = "First name cannot be empty."
-      // setErrors((prevErrors) => prevErrors[LASTNAME] = "Last name is not a valid name.")
-      // setLastNameError("Last name is not a valid name.")
-    }
-
-    if(!email){
-      errorArray[FIRSTNAME] = "First name cannot be empty."
-      // setErrors((prevErrors) => prevErrors[EMAIL] = "Email cannot be empty.")
-      // setEmailError("Email cannot be empty.")
-    } else if(!emailRegEx.test(email)){
-      errorArray[FIRSTNAME] = "First name cannot be empty."
-      // setErrors((prevErrors) => prevErrors[EMAIL] = "Your email is invalid.")
-      // setEmailError("Your email is invalid.")
-    }
-
-
-    if(!code){
-      errorArray[FIRSTNAME] = "First name cannot be empty."
-      // setErrors((prevErrors) => prevErrors[CODE] = "You did not provide a code.")
-      // setcodeError("You did not provide a code.")
-    } else if(code && !firstNameError && !lastNameError && !emailError){
-
-      let validCode = await axios.post("http://localhost:8000/verify/appsumo", {code})
-  
-      if(!validCode.data.pass){
-        errorArray[FIRSTNAME] = "First name cannot be empty."
-        // setErrors((prevErrors) => prevErrors[CODE] = validCode.data?.message)
-        // setcodeError(validCode.data?.message)
+      errorArray[LASTNAME] = "Last name cannot be empty."
+      setErrors(errorArray)
+    } else if(!lastNameRegEx.test(lastName)){
+          errorArray[LASTNAME] = "Last name is not valid."
+          setErrors(errorArray)
       }
+
+
+    // Check if email exists and is valid
+    if(!email){
+      errorArray[EMAIL] = "Email cannot be empty."
+      setErrors(errorArray)
+    } else if(!emailRegEx.test(email)){
+      errorArray[EMAIL] = "Email is not valid."
+      setErrors(errorArray)
     }
+    // setErrors(errorArray)
+    // Check if code 
+    if(!code){
+      errorArray[CODE] = "AppSumo Code cannot be empty."
+      setErrors(errorArray)
 
-
-
-    if(!firstNameError && !lastNameError && !emailError && !codeError){
-      return true
-    } 
-    else {
-      return false
     }
+    if(code && errorArray.length == 0){
 
+      let validCode = await axios.post("http://localhost:8000/api/verify/appsumo", {code})
+      let pass = validCode.data.pass
+
+      if(!pass){
+        errorArray[CODE] = "Please provide a valid AppSumo Code."
+        setErrors(errorArray)
+        return false
+
+      } else if(pass && errorArray.length == 0){
+          return true
+      }
+     
+
+    }
 
   }
 
@@ -112,7 +108,8 @@ const Appsumo = () => {
   }
 
   useEffect(() => {
-  }, [submitSuccess])
+    console.log(errors)
+  }, [submitSuccess, errors])
 
  
   return (
@@ -154,26 +151,26 @@ const Appsumo = () => {
         { !submitSuccess && 
         <form>
             <div className="form-field">
-              <label htmlFor="first-name">First Name {firstNameError && <span className="error-message">{firstNameError}</span>}</label>
-              <input type="text" ref={firstNameRef} className={firstNameError ? "error" : "field"}/>
+              <label htmlFor="first-name">First Name {errors[FIRSTNAME] && <span className="error-message">{errors[FIRSTNAME]}</span>}</label>
+              <input type="text" ref={firstNameRef} className={errors[FIRSTNAME] ? "error" : "field"}/>
               
             </div>
 
             <div className="form-field">
-              <label htmlFor="last-name">Last Name {lastNameError && <span className="error-message">{lastNameError}</span>}</label>
-              <input type="text" ref={lastNameRef} className={lastNameError ? "error" : "field"}/>
+              <label htmlFor="last-name">Last Name {errors[LASTNAME] && <span className="error-message">{errors[LASTNAME]}</span>}</label>
+              <input type="text" ref={lastNameRef} className={errors[LASTNAME] ? "error" : "field"}/>
               
             </div>
 
             <div className="form-field">
-              <label htmlFor="email">Email  {emailError && <span className="error-message">{emailError}</span>}</label>
-              <input type="text" ref={emailRef} className={emailError ? "error" : "field"}/>
+              <label htmlFor="email">Email  {errors[EMAIL] && <span className="error-message">{errors[EMAIL]}</span>}</label>
+              <input type="text" ref={emailRef} className={errors[EMAIL] ? "error" : "field"}/>
              
             </div>
 
             <div className="form-field">
-              <label htmlFor="appsumo-code">AppSumo Code  {codeError && <span className="error-message">{codeError}</span>}</label>
-              <input type="text" ref={codeRef} className={codeError ? "error" : "field"}/>
+              <label htmlFor="appsumo-code">AppSumo Code  {errors[CODE] && <span className="error-message">{errors[CODE]}</span>}</label>
+              <input type="text" ref={codeRef} className={errors[CODE] ? "error" : "field"}/>
              
             </div>
 
