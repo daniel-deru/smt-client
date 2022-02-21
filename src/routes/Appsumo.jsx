@@ -20,6 +20,8 @@ const Appsumo = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false)
   // errors state array for the errors
   const [errors, setErrors] = useState([])
+  // get user id
+  const [user, setUser] = useState(null)
 
   // verify the data before submitting it
   const verify = async ({code, firstName, lastName, email}) => {
@@ -61,7 +63,7 @@ const Appsumo = () => {
       errorArray[EMAIL] = "Email is not valid."
       setErrors(errorArray)
     }
-    // setErrors(errorArray)
+
     // Check if code 
     if(!code){
       errorArray[CODE] = "AppSumo Code cannot be empty."
@@ -70,7 +72,7 @@ const Appsumo = () => {
     }
     if(code && errorArray.length == 0){
 
-      let validCode = await axios.post("http://localhost:8000/api/verify/appsumo", {code})
+      let validCode = await axios.post("http://localhost:8000/api/verify/appsumoCode", {code})
       let pass = validCode.data.pass
 
       if(!pass){
@@ -97,14 +99,20 @@ const Appsumo = () => {
 
     let validData = await verify(payload)
     if(validData){
-      const check = await axios.post("http://localhost:8000/appsumo", payload)
+      const check = await axios.post("http://localhost:8000/api/appsumo", payload)
       const data = check.data
       console.log(data)
       if(data.pass){
         setSubmitSuccess(true)
+        setUser(data.user_id)
       }
     }
 
+  }
+
+  const Resend = async () => {
+    let req = await axios.post("http://localhost:8000/api/mail/signUp", {userId: user})
+    console.log(req.data)
   }
 
   useEffect(() => {
@@ -182,7 +190,7 @@ const Appsumo = () => {
 
         { submitSuccess && 
           <div className="resend">
-            <button>Resend Email</button>
+            <button onClick={() => Resend()}>Resend Email</button>
           </div>
         }
     </AppSumoPage>

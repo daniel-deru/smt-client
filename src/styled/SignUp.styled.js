@@ -49,7 +49,7 @@ export const SignUpPage = styled.div`
                     color: white;
                 }
 
-                input {
+                .field {
                     width: calc(100% - 20px);
                     border-radius: 5px;
                     border: 1px solid  ${({theme}) => theme.colors.green};
@@ -59,7 +59,7 @@ export const SignUpPage = styled.div`
                     color: white;
                     &:focus {
                         background-color: transparent;
-                        border: 1px solid ${({ theme }) => theme.colors.orange};
+                        border: 1px solid ${({ theme }) => theme.colors.lightBlue};
                     }
                 }
 
@@ -91,6 +91,26 @@ export const SignUpPage = styled.div`
                 }
             }
         }
+
+    .error-message {
+        color: red;
+        font-size: 0.75em;
+    }
+
+    .error {
+        width: calc(100% - 20px);
+        border-radius: 5px;
+        border: 1px solid red;
+        padding: 5px 10px;
+        background-color: transparent;
+        outline: none;
+        color: white;
+        &:focus {
+            background-color: transparent;
+            border: 1px solid ${({ theme }) => theme.colors.lightBlue};
+        }
+        
+    }
     
 
 
