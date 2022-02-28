@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { HeaderComponent } from '../styled/Header.styled'
 
 const Header = () => {
   return (
-    <header>
-      <img src="./images/SMT Logo 1000x600.png" alt="" />
+    <HeaderComponent>
+      <img src="../images/smt logo 400x200.png" alt="" />
+      {/* <img src="./images/SMT Logo 1000x600.png" alt="" /> */}
       <nav>
         <ul>
           <li>
@@ -16,12 +18,10 @@ const Header = () => {
           <li>
             <Link to="https://www.smartmetatec.com/account">Account</Link>
           </li>
-          <li>
-            <button type='button'>Logout</button>
-          </li>
         </ul>
+        <button type='button'>Logout</button>
       </nav>
-    </header>
+    </HeaderComponent>
   )
 }
 

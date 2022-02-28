@@ -4,6 +4,7 @@ import Appsumo from "./routes/Appsumo";
 import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
 import Dashboard from "./routes/Dashboard";
+import Downloads from "./routes/Dashboard/Downloads";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
               <Route path="/appsumo" element={<Appsumo />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard/>} />
+              <Route path="/dashboard" element={<Dashboard/>}>
+                <Route path="downloads" element={<Downloads />}/>
+              </Route>
               
           </Routes>
     </div>
