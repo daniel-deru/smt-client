@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
-export const SignUpPage = styled.div`
+
+export const LoginPage = styled.main`
     background-color: ${({theme}) => theme.colors.opacity("green", "10")};
     height: 100vh;
     box-sizing: border-box;
@@ -131,6 +132,8 @@ export const SignUpPage = styled.div`
         
     }
     
+
+
 
 
 `

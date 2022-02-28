@@ -98,10 +98,11 @@ const Appsumo = () => {
     }
 
     let validData = await verify(payload)
+    console.log("This is the valid data verification", validData)
     if(validData){
       const check = await axios.post("http://localhost:8000/api/appsumo", payload)
       const data = check.data
-      console.log(data)
+      console.log("This is the return data from the server after the user is created.", data)
       if(data.pass){
         setSubmitSuccess(true)
         setUser(data.user_id)
@@ -116,7 +117,7 @@ const Appsumo = () => {
   }
 
   useEffect(() => {
-    console.log(errors)
+    // console.log(errors)
   }, [submitSuccess, errors])
 
  

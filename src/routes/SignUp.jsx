@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react"
 import { SignUpPage } from "../styled/SignUp.styled"
 import axios from "axios"
 import { useSearchParams } from "react-router-dom"
+import {FaEye, FaEyeSlash} from "react-icons/fa"
 
 
 const SignUp = () => {
@@ -14,6 +15,8 @@ const SignUp = () => {
     const [searchParams] = useSearchParams()
 
     const [errors, setErrors] = useState([])
+    const [passwordVisibility, setPasswordVisibility] = useState(false)
+    const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false)
 
     
     const submit = async () => {
@@ -26,9 +29,10 @@ const SignUp = () => {
 
         let goodInfo = verify(payload)
         if(goodInfo){
-            // console.log("good to send")
-            // const createAccount = await axios.post("https://localhost:8000/signup", payload)
-            // let response = createAccount.data
+            console.log("good to send")
+            const createAccount = await axios.post("http://localhost:8000/users/signup", payload)
+            let response = createAccount
+            console.log(response)
         }
     }
 
@@ -89,6 +93,17 @@ const SignUp = () => {
         }
     }
 
+    const updatePasswordVisibility = () => {
+        setPasswordVisibility(!passwordVisibility)
+        PasswordRef.current.type = passwordVisibility ? "password" : "text"
+    
+    }
+
+    const updateConfirmPasswordVisibility = () => {
+        setConfirmPasswordVisibility(!confirmPasswordVisibility)
+        ConfirmPasswordRef.current.type = confirmPasswordVisibility ? "password" : "text"
+    }
+
 
     useEffect(() => {
         verifyUser()
@@ -113,12 +128,23 @@ const SignUp = () => {
 
                     <div className="form-field">
                         <label >Password {errors[PASSWORD] && <span className="error-message">{errors[PASSWORD]}</span>}</label>
-                        <input ref={PasswordRef} type="password" className={errors[PASSWORD] ? "error": "field"}/>
+                        <span>
+                            <input ref={PasswordRef} type="password" className={errors[PASSWORD] ? "error": "field"}/>
+                            <div className="visible" id="password" onClick={() => updatePasswordVisibility()}>
+                                {passwordVisibility ? <FaEye  /> : <FaEyeSlash />}
+                            </div>
+                        </span>
+                        
                     </div>
 
                     <div className="form-field">
                         <label >Confirm Password {errors[CONFIRM_PASSWORD] && <span className="error-message">{errors[CONFIRM_PASSWORD]}</span>}</label>
-                        <input ref={ConfirmPasswordRef} type="password" className={errors[CONFIRM_PASSWORD] ? "error": "field"}/>
+                        <span>
+                            <input ref={ConfirmPasswordRef} type="password" className={errors[CONFIRM_PASSWORD] ? "error": "field"}/>
+                            <div className="visible" id="confirmPassword" onClick={() => updateConfirmPasswordVisibility()}>
+                                {confirmPasswordVisibility ? <FaEye /> : <FaEyeSlash />}
+                            </div>
+                        </span>
                     </div>
 
                     <div className="form-field">
