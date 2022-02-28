@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation} from "react-router-dom"
 import { NavComponent } from "../styled/Nav.styled"
-import { useState, useEffect} from "react"
-import axios from "axios"
 
 let username = "daniel"
 
 const Nav = () => {
-
+    const location = useLocation()
 
     return (
         <NavComponent>
@@ -27,9 +25,9 @@ const Nav = () => {
                 <li>
                     <Link to="support" >Support</Link>
                 </li>
-                <li>
-                    <Link to="downloads" >Downloads</Link>
-                </li>
+                {/* <li>
+                    <Link to="licences" >Licences</Link>
+                </li> */}
             </ul>
         </NavComponent>
     )

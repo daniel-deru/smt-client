@@ -6,6 +6,7 @@ export const HeaderComponent = styled.header`
     width: 80%;
     margin: auto;
     align-items: center;
+    margin-top: 1rem;
     img {
         height: 100px;
     }
@@ -16,12 +17,13 @@ export const HeaderComponent = styled.header`
         width: 100%;
         ul {
             width: 100%;
-            justify-content: space-evenly;
+            justify-content: center;
             display: flex;
             list-style-type: none;
             padding: 0;
             margin: 0;
             li {
+                margin: 0px 20px;
                 font-size: 1.5em;
                 a {
                     text-decoration: none;

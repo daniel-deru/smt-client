@@ -16,7 +16,7 @@ export const Main = styled.section`
 `
 
 export const DashboardNestedRoutes = styled.div`
-    /* border: 2px solid black; */
     width: 100%;
     flex: 5;
+    margin: 20px;
 `
