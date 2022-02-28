@@ -15,9 +15,6 @@ const Header = () => {
           <li>
             <Link to="https://www.smartmetatec.com/products">Our Products</Link>
           </li>
-          <li>
-            <Link to="https://www.smartmetatec.com/account">Account</Link>
-          </li>
         </ul>
         <button type='button'>Logout</button>
       </nav>

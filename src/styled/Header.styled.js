@@ -13,11 +13,14 @@ export const HeaderComponent = styled.header`
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        width: 100%;
         ul {
-            width: 70vw;
+            width: 100%;
             justify-content: space-evenly;
             display: flex;
             list-style-type: none;
+            padding: 0;
+            margin: 0;
             li {
                 font-size: 1.5em;
                 a {
