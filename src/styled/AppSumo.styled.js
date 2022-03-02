@@ -162,4 +162,13 @@ export const AppSumoPage = styled.main`
     .error-message {
         color: red;
     }
+
+    .login-link {
+        color: white;
+        text-align: center;
+        
+        a {
+            color: ${({theme}) => theme.colors.green};
+        }
+    }
 `

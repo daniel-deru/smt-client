@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useRef, useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 import { AppSumoPage } from '../styled/AppSumo.styled'
 
@@ -125,7 +126,7 @@ const Appsumo = () => {
     <AppSumoPage>
       
         <header>
-            <img id='smt-logo' src="./images/SMT logo.svg" alt="" />
+            <img id='smt-logo' src="./images/smt-logo-name.png" alt="" />
             <span className='separator'>&amp;</span>
             <img id='appsumo-logo' src="./images/appsumo-logo-white.png" alt="" />
         </header>
@@ -186,6 +187,7 @@ const Appsumo = () => {
             <div className='form-field'>
               <button type="button" onClick={() => submit()}>Let's Go</button>
             </div>
+           
 
         </form>}
 
@@ -194,6 +196,7 @@ const Appsumo = () => {
             <button onClick={() => Resend()}>Resend Email</button>
           </div>
         }
+        <div className="login-link">Already have an account? <Link to="/login">Go Here</Link></div>
     </AppSumoPage>
   )
 }

@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const slice = createSlice({
     name: "user",
     initialState: {
-        user: null
+        user: {}
     },
     reducers: {
         loginReducer: (state, action) => {
@@ -21,9 +20,9 @@ export default slice.reducer
 
 const { loginReducer, logoutReducer } = slice.actions
 
-export const login = ({name, password}) => async dispatch =>  {
+export const login = (payload) => async dispatch =>  {
     try {
-        dispatch(loginReducer({name}))
+        dispatch(loginReducer(payload))
     } catch (e) {
         console.error(e.message)
     }

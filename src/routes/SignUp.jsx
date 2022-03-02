@@ -1,13 +1,14 @@
 import { useRef, useState, useEffect } from "react"
 import { SignUpPage } from "../styled/SignUp.styled"
 import axios from "axios"
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams, useNavigate } from "react-router-dom"
 import {FaEye, FaEyeSlash} from "react-icons/fa"
 
 
 const SignUp = () => {
     const PASSWORD = 0
     const CONFIRM_PASSWORD = 1
+
     const EmailRef = useRef()
     const PasswordRef = useRef()
     const ConfirmPasswordRef = useRef()
@@ -17,6 +18,8 @@ const SignUp = () => {
     const [errors, setErrors] = useState([])
     const [passwordVisibility, setPasswordVisibility] = useState(false)
     const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false)
+
+    const navigate = useNavigate()
 
     
     const submit = async () => {
@@ -31,8 +34,10 @@ const SignUp = () => {
         if(goodInfo){
             console.log("good to send")
             const createAccount = await axios.post("http://localhost:8000/users/signup", payload)
-            let response = createAccount
-            console.log(response)
+            let response = createAccount.data
+            if(response.pass){
+                navigate("/login")
+            }
         }
     }
 

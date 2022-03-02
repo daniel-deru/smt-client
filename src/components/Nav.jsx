@@ -1,16 +1,25 @@
 import { Link, useLocation} from "react-router-dom"
 import { NavComponent } from "../styled/Nav.styled"
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
 
 let username = "daniel"
 
 const Nav = () => {
     const location = useLocation()
+    
+    const { user } = useSelector((state) => state.user)
+
+
+        useEffect(() => {
+            // console.log(user)
+        }, [])
 
     return (
         <NavComponent>
             <section>
-                <img  src={`https://avatars.dicebear.com/api/avataaars/${username}.svg`} alt="" />
-                <h4>{username}</h4>
+                <img  src={`https://avatars.dicebear.com/api/avataaars/${user.name}.svg`} alt="" />
+                <h4>{user.name}</h4>
             </section>
             <ul>
                 <li>
