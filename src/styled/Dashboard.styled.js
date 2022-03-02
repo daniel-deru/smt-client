@@ -19,4 +19,22 @@ export const DashboardNestedRoutes = styled.div`
     width: 100%;
     flex: 5;
     margin: 20px;
+    overflow: auto;
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+        border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: ${({theme}) => theme.colors.lightBlue};
+        border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: ${({theme}) => theme.colors.green};
+    }
 `

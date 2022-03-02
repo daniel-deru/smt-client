@@ -15,26 +15,36 @@ export const AccountPage = styled.div`
     }
 
     form {
-        width: 60%;
+        width: 80%;
         margin: auto;
-        display: grid;
-        grid-gap: 1rem;
-        grid-template-columns: 1fr 1fr;
-        div {
-            width: fit-content;
-            margin: auto;
-            label {
-                display: block;
-                font-size: 1.2em;
-                margin-bottom: 10px;
-            }
+        h1 {
+            text-align: center;
+        }
+        > div {
+            display: grid;
+            grid-gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+            > div {
+                width: 90%;
+                margin: auto;
+                label {
+                    display: block;
+                    width: 100%;
+                    font-size: 1.2em;
+                    margin-bottom: 10px;
+                    
+                }
 
-            input {
-                font-size: 1.5em;
-                border-radius: 5px;
-                border: 1px solid black;
+                input {
+                    width: 100%;
+                    font-size: 1.5em;
+                    border-radius: 5px;
+                    border: 1px solid black;
+                    padding: 5px;
+                }
             }
         }
+        
     }
 
     .submit {
@@ -47,6 +57,19 @@ export const AccountPage = styled.div`
         background-color: ${({theme}) => theme.colors.green};
         color: black;
         cursor: pointer;
+        transition: 0.3s ease-in-out;
+        border: 2px solid transparent;
+
+        &:hover {
+            background-color: ${({theme}) => theme.colors.lightBlue};
+            color: white;
+        }
+
+        &:active {
+            background-color: transparent;
+            border: 2px solid ${({theme}) => theme.colors.lightBlue};
+            color: black;
+        }
 
     }
 
