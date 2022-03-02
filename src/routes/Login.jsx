@@ -13,8 +13,11 @@ import { login } from "../store/user"
 const Login = () => {
     const EmailRef = useRef()
     const PasswordRef = useRef()
+
     const navigate = useNavigate()
+
     const [passwordVisibility, setPasswordVisibility] = useState()
+    const [error, setError] = useState("")
 
     let user = useSelector(state => state.user)
     let dispatch = useDispatch()
@@ -36,17 +39,22 @@ const Login = () => {
             'accept': 'application/json',
             withCredentials: true
         }
-        const login_request = await axios.post("http://localhost:8000/users/login", payload, headers)
-        const response = login_request.data
-        if(response.pass){
-            dispatch(login(
-                {
-                name: response.name,
-                email: response.email,
-                }
-            ))
-           navigate("/dashboard")
+        try {
+            const login_request = await axios.post("http://localhost:8000/users/login", payload, headers)
+            const response = login_request.data
+            if(response.pass){
+                dispatch(login(
+                    {
+                    name: response.name,
+                    email: response.email,
+                    }
+                ))
+            navigate("/dashboard")
+            }
+        } catch (e) {
+            setError(e.response.data.message)
         }
+        
     }
   return (
     <LoginPage>
@@ -78,9 +86,7 @@ const Login = () => {
                     </div>
 
                 </form>
-                <ul>
-                    {/* {messages.map((message) => <li key={message}>{message}</li>)} */}
-                </ul>
+                <div className="error">{error}</div>
             
         </LoginPage>
   )

@@ -49,11 +49,49 @@ export const SupportPage = styled.div`
                 font-size: 1em;
                 border-radius: 5px;
                 background-color: ${({theme}) => theme.colors.green};
-                border: none;
+                border: 2px solid transparent;
                 padding: 5px 0px;
                 cursor: pointer;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                background-color: ${({theme}) => theme.colors.lightBlue};
+                color: white;
+                }
+
+                &:active {
+                    background-color: transparent;
+                    border: 2px solid ${({theme}) => theme.colors.lightBlue};
+                }
+
             }
 
+        }
+    }
+
+    .submit-message {
+        h1 {
+            font-size: 4em;
+            margin-top: 5rem;
+        }
+
+        button {
+            font-size: 1.5em;
+            background-color: ${({theme}) => theme.colors.green};
+            padding: 5px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            border: 2px solid transparent;
+            &:hover {
+                background-color: ${({theme}) => theme.colors.lightBlue};
+                color: white;
+            }
+
+            &:active {
+                background-color: transparent;
+                border: 2px solid ${({theme}) => theme.colors.lightBlue};
+            }
         }
     }
 

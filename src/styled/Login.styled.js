@@ -1,11 +1,12 @@
 import styled from "styled-components"
+import background from "../images/background.jpg"
 
 
 export const LoginPage = styled.main`
     background-color: ${({theme}) => theme.colors.opacity("green", "10")};
     height: 100vh;
     box-sizing: border-box;
-    background-image: url("./images/background.jpg");
+    background-image: url(${background});
     & * {
         font-size: 1.1em;
         font-family: sans-serif;
@@ -118,17 +119,8 @@ export const LoginPage = styled.main`
     }
 
     .error {
-        width: calc(100% - 20px);
-        border-radius: 5px;
-        border: 1px solid red;
-        padding: 5px 10px;
-        background-color: transparent;
-        outline: none;
-        color: white;
-        &:focus {
-            background-color: transparent;
-            border: 1px solid ${({ theme }) => theme.colors.lightBlue};
-        }
+        color: red;
+        text-align: center;
         
     }
     
