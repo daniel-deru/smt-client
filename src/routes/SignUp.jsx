@@ -91,7 +91,7 @@ const SignUp = () => {
 
     const verifyUser = async () => {
         console.log(searchParams.get("id"))
-        let verified = await axios.post("http://localhost:8000/api/verify/email", {code: searchParams.get("id")})
+        let verified = await axios.post("http://localhost:8000/api/verify/email?email="+searchParams.get("id"))
         let result = verified.data
         if(result.pass){
             EmailRef.current.value = result.email
