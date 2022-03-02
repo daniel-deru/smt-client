@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const SupportPage = styled.div`
-    font-size: 1.3em;
+    font-size: 1.4em;
     text-align: center;
     h1 {
         margin: 0px;

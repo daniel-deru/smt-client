@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { AccountPage } from "../../styled/Dashboard/Account.styled"
 import axios from "axios"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 
 const Account = () => {
@@ -23,13 +23,56 @@ const Account = () => {
 
   const { user } = useSelector(state => state.user)
 
+  const checkData = () => {
+    const first_name = firstNameRef.current.value
+    const last_name = lastNameRef.current.value
+    const display_name = displayNameRef.current.value
+    const contact_email = contactEmailRef.current.value
+    const contact_number = contactNumberRef.current.value
+    const company_name = companyNameRef.current.value
+    const country = countryRef.current.value
+    const province = provinceRef.current.value
+    const city = cityRef.current.value
+    const postal = postalRef.current.value
+    const address1 = address1Ref.current.value
+    const address2 = address2Ref.current.value
+
+    let info = {
+      first_name,
+      last_name,
+      display_name,
+      contact_email,
+      contact_number,
+      company_name,
+      country,
+      province,
+      city,
+      postal,
+      address1,
+      address2,
+    }
+    let iterableInfo = Object.entries(info)
+    let filledInData = iterableInfo.filter((item) => item[1] ? true : false)
+    // Compare the data to the previous data to see what needs to be updated
+    console.log(filledInData)
+  }
+
 
   const update = async () => {
-    
-    const request = await axios.post("http://localhost:8000/users/update", {test: "Test"}, { withCredentials: true })
-    const response = request.data
-    console.log(response)
+      checkData()
+    // Use some kind of api that fires in a useEffect to request the data
   }
+
+  useEffect(async () => {
+    try {
+      const requestUser = await axios.post("http://localhost:8000/users/account/get", null, {withCredentials: true})
+      const user = requestUser.data
+      console.log(user)
+    } catch (e) {
+      console.log(e)
+    } 
+    
+  }, [])
   return (
     <AccountPage>
         <section>
