@@ -1,8 +1,22 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
+import axios from 'axios'
+
+
 import { HeaderComponent } from '../styled/Header.styled'
 
 const Header = () => {
+  const navigate = useNavigate()
+  const logout = () => {
+    try{
+      const request = axios.post("http://localhost:8000/users/logout", {}, {withCredentials: true})
+      if(request.data.pass){
+        navigate("/login")
+      }
+    } catch (e){
+      navigate("/login")
+    }
+  }
   return (
     <HeaderComponent>
       <img src="../images/smt logo 400x200.png" alt="" />
@@ -16,7 +30,7 @@ const Header = () => {
             <Link to="https://www.smartmetatec.com/products">Our Products</Link>
           </li>
         </ul>
-        <button type='button'>Logout</button>
+        <button type='button' onClick={() => logout()}>Logout</button>
       </nav>
     </HeaderComponent>
   )

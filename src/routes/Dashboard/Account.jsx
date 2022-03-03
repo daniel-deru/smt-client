@@ -1,10 +1,15 @@
 import { useSelector } from "react-redux"
-import { AccountPage } from "../../styled/Dashboard/Account.styled"
-import axios from "axios"
 import { useState, useRef, useEffect } from "react"
+import { useNavigate } from "react-router"
+import axios from "axios"
+
+
+import { AccountPage } from "../../styled/Dashboard/Account.styled"
 
 
 const Account = () => {
+  const navigate = useNavigate()
+
   const firstNameRef = useRef()
   const lastNameRef = useRef()
   const displayNameRef = useRef()
@@ -23,7 +28,7 @@ const Account = () => {
 
   const { user } = useSelector(state => state.user)
 
-  const checkData = () => {
+  const filterData = () => {
     const first_name = firstNameRef.current.value
     const last_name = lastNameRef.current.value
     const display_name = displayNameRef.current.value
@@ -33,7 +38,7 @@ const Account = () => {
     const country = countryRef.current.value
     const province = provinceRef.current.value
     const city = cityRef.current.value
-    const postal = postalRef.current.value
+    const post_code = postalRef.current.value
     const address1 = address1Ref.current.value
     const address2 = address2Ref.current.value
 
@@ -47,49 +52,79 @@ const Account = () => {
       country,
       province,
       city,
-      postal,
+      post_code,
       address1,
       address2,
     }
-    let iterableInfo = Object.entries(info)
-    let filledInData = iterableInfo.filter((item) => item[1] ? true : false)
-    // Compare the data to the previous data to see what needs to be updated
-    console.log(filledInData)
+    // Check if the data is filled in
+    // Check if the data is different from the user in state
+    let filledInData = Object.entries(info).filter((item) => {
+      if(item[1] && user[item[0]] && user[item[0]] != item[1]){
+        return true
+      }
+      else return false
+    })
+
+    return filledInData.reduce((acc, val) => {
+      const [key, value] = val
+      acc[key] = value
+      return acc
+    }, {})
+
   }
 
 
   const update = async () => {
-      checkData()
-    // Use some kind of api that fires in a useEffect to request the data
+    const updatedData = filterData()
+    
+    if(Object.keys(updatedData).length > 0){
+      console.log(Object.keys(updatedData))
+      try {
+        const request = await axios.post("http://localhost:8000/users/account/update", updatedData, {withCredentials: true})
+        const response = request.data
+        if(response.pass){
+          console.log(response)
+          window.location.reload(false)
+        }
+      } catch (e) {
+        if(e?.response?.status == 403){
+          navigate("/login")
+        }
+      }
+
+    }
+    
+  }
+
+  const fillInFields = () => {
+    if(user){
+      firstNameRef.current.value = user["first name"]
+      lastNameRef.current.value = user['last name']
+      displayNameRef.current.value = user.display_name
+      contactEmailRef.current.value = user.contact_email
+      contactNumberRef.current.value = user.contact_number
+      companyNameRef.current.value = user.company_name
+      countryRef.current.value = user.country
+      provinceRef.current.value = user.province
+      cityRef.current.value = user.city
+      postalRef.current.value = user.post_code
+      address1Ref.current.value = user.address1
+      address2Ref.current.value = user.address2
+    }
+
   }
 
   useEffect(async () => {
-    try {
-      const requestUser = await axios.post("http://localhost:8000/users/account/get", null, {withCredentials: true})
-      const user = requestUser.data
-      console.log(user)
-    } catch (e) {
-      console.log(e)
-    } 
-    
-  }, [])
+    fillInFields()
+  }, [user])
   return (
     <AccountPage>
-        <section>
-          <div>
-            Name: <span>{user.name}</span>
-          </div>
-          <div>
-            Email: <span>{user.email}</span>
-          </div>
-        </section>
-        <h2>Set information for your account</h2>
         <form >
           <h1>Personal Details</h1>
           <div>
               <div className='field-container'>
                 <label>First Name</label>
-                <input type="text" ref={firstNameRef}/>
+                <input type="text" ref={firstNameRef}  />
               </div>
 
               <div className='field-container'>

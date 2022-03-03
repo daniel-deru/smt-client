@@ -34,11 +34,24 @@ export const HeaderComponent = styled.header`
         button {
             background: ${({theme}) => theme.colors.lightBlue};
             color: white;
-            border: none;
+            border: 2px solid transparent;
             padding: 5px 20px;
             height: fit-content;
             font-size: 1.5em;
             border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+
+            &:hover {
+                background-color: ${({theme}) => theme.colors.green};
+                color: black;
+
+            }
+
+            &:active {
+                background-color: transparent;
+                border: 2px solid ${({theme}) => theme.colors.green};
+            }
         }
     }
 `
