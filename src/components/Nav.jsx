@@ -1,4 +1,4 @@
-import { Link, useLocation} from "react-router-dom"
+import { Link, useLocation, NavLink } from "react-router-dom"
 import { NavComponent } from "../styled/Nav.styled"
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
@@ -23,16 +23,16 @@ const Nav = () => {
             </section>
             <ul>
                 <li>
-                    <Link to="downloads" >Downloads</Link>
+                    <NavLink to="downloads" activeClassName="active">Downloads</NavLink>
                 </li>
                 <li>
-                    <Link to="products" >Products</Link>
+                    <NavLink to="products" activeClassName="active">Products</NavLink>
                 </li>
                 <li>
-                    <Link to="account" >Account</Link>
+                    <NavLink to="account" activeClassName="active">Account</NavLink>
                 </li>
                 <li>
-                    <Link to="support" >Support</Link>
+                    <NavLink to="support" activeClassName="active">Support</NavLink>
                 </li>
                 {/* <li>
                     <Link to="licences" >Licences</Link>
