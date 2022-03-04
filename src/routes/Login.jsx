@@ -52,7 +52,8 @@ const Login = () => {
             navigate("/dashboard")
             }
         } catch (e) {
-            setError(e.response.data.message)
+            console.log(e)
+            setError(e?.response?.data?.message)
         }
         
     }

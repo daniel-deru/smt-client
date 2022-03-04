@@ -18,6 +18,7 @@ const Downloads = () => {
     try {
       const requestDownloads = await axios.post("http://localhost:8000/users/downloads", {}, {withCredentials: true})
       setDownloads(requestDownloads.data)
+      console.log(requestDownloads.data)
     } catch (e) {
       if(e?.response?.status == 403){
         navigate("/login")
@@ -32,7 +33,7 @@ const Downloads = () => {
   return (
     <DownloadsPage>
       <h1>Downloads</h1>
-      {downloads.map(download => (
+      {downloads && downloads.map(download => (
         <Download download={download}/>
       ))}
 

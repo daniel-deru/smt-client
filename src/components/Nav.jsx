@@ -18,21 +18,21 @@ const Nav = () => {
     return (
         <NavComponent>
             <section>
-                <img  src={`https://avatars.dicebear.com/api/avataaars/${user.display_name}.svg`} alt="" />
+                {/* <img  src={`https://avatars.dicebear.com/api/avataaars/${user.display_name}.svg`} alt="" /> */}
                 <h4>{user.display_name}</h4>
             </section>
             <ul>
                 <li>
-                    <NavLink to="downloads" activeClassName="active">Downloads</NavLink>
+                    <NavLink to="downloads" >Downloads</NavLink>
                 </li>
                 <li>
-                    <NavLink to="products" activeClassName="active">Products</NavLink>
+                    <NavLink to="products" >Products</NavLink>
                 </li>
                 <li>
-                    <NavLink to="account" activeClassName="active">Account</NavLink>
+                    <NavLink to="account" >Account</NavLink>
                 </li>
                 <li>
-                    <NavLink to="support" activeClassName="active">Support</NavLink>
+                    <NavLink to="support" >Support</NavLink>
                 </li>
                 {/* <li>
                     <Link to="licences" >Licences</Link>
