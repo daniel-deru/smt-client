@@ -37,7 +37,7 @@ export const AccountPage = styled.div`
 
                 input {
                     width: 100%;
-                    font-size: 1.5em;
+                    font-size: 1.2em;
                     border-radius: 5px;
                     border: 1px solid black;
                     padding: 5px;
