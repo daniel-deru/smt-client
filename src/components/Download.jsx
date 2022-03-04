@@ -1,28 +1,26 @@
-
+import { useEffect } from "react"
 import { useNavigate } from "react-router"
 import axios from "axios"
 
 import { DownloadComponent } from "../styled/DownloadComponent.styled"
 
-const Download = ({download}) => {
+const Download = ({product}) => {
 
-  const navigate = useNavigate()
   const downloadClicked = () => {
-    console.log(download)
     try {
-      // navigate("http://localhost:8000/users/downloadproduct")
-      window.location.assign(`http://localhost:8000/users/downloadproduct?id=${download.id}`)
-      // const requestDownload = axios.post("http://localhost:8000/users/downloadproduct", {id: download.id}, {withCredentials: true})
-      // console.log(requestDownload.data)
-
+      window.location.assign(`http://localhost:8000/users/downloadproduct?id=${product.product_id}`)
     } catch (e) {
 
     }
   }
+
+  // useEffect(() => {
+  //   console.log(product)
+  // })
   return (
     <DownloadComponent>
         <div>
-            <p>{download.name}</p>
+            <p>{product.name}</p>
             <button onClick={() => downloadClicked()}>Download</button>
         </div>
 
