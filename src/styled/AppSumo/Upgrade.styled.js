@@ -6,16 +6,21 @@ export const UpgradePage = styled.div`
     height: 100vh;
     text-align: center;
     font-size: 1.5em;
+    color: white;
     header {
         padding-top: 5rem;
     }
 
     main {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 5rem;
         form {
-            color: white;
-            margin-top: 5rem;
+            border: 2px solid ${({theme}) => theme.colors.green};
+            padding: 3rem;
+            border-radius: 10px;
             width: 30vw;
-            margin:5rem auto ;
             div {
                 label {
                     display: block;

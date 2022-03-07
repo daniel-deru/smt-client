@@ -49,7 +49,7 @@ const AppSumoLogin = () => {
                     email: response.email,
                     }
                 ))
-            navigate("appsumo/upgrade")
+            navigate("../upgrade")
             }
         } catch (e) {
             console.log(e)
@@ -63,7 +63,8 @@ const AppSumoLogin = () => {
                     <img src="../images/smt-logo-full.png" alt="" />     
                 </div>
                 <section>
-                    <p>Log into your account</p>
+                    <p>You already have an account.</p>
+                    <p>Please Log into your account to redeem your product.</p>
                 </section>
                 <form >
 

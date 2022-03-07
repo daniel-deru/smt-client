@@ -1,6 +1,10 @@
 import { UpgradePage } from "../../styled/AppSumo/Upgrade.styled"
+import { useSelector } from "react-redux"
 
 const Upgrade = () => {
+    
+    const { user } = useSelector(state => state.user)
+    console.log(user)
   return (
     <UpgradePage>
         <header>
@@ -13,9 +17,13 @@ const Upgrade = () => {
                     <input type="text" />
                 </div>
                 <div>
-                    <button type="button">Upgrade</button>
+                    <button type="button">Claim</button>
                 </div>
             </form>
+            <section className="user-info">
+                <p>Name: {user.name}</p>
+                <p>Email: {user.email}</p>
+            </section>
         </main>
     </UpgradePage>
   )

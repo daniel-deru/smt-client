@@ -115,7 +115,7 @@ const Redeem = () => {
         }
       } catch (e){
         if(e?.response?.status == 301){
-          navigate("login")
+          navigate("../login")
         }
       }
       
