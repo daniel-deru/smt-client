@@ -12,6 +12,9 @@ const Upgrade = () => {
                     <label>Enter your AppSumo Code</label>
                     <input type="text" />
                 </div>
+                <div>
+                    <button type="button">Upgrade</button>
+                </div>
             </form>
         </main>
     </UpgradePage>

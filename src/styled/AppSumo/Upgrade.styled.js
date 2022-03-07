@@ -35,6 +35,29 @@ export const UpgradePage = styled.div`
                         border: 2px solid ${({theme}) => theme.colors.green};
                     }
                 }
+
+                button {
+                    font-size: 1em;
+                    background-color: ${({theme}) => theme.colors.lightBlue};
+                    border: 2px solid transparent;
+                    margin: 2rem auto;
+                    padding: 5px 20px;
+                    border-radius: 5px;
+                    color: white;
+                    cursor: pointer;
+                    transition: .3s ease-in-out;
+
+                    &:hover {
+                        background-color: ${({theme}) => theme.colors.green};
+                    }
+
+                    &:active {
+                        background-color: transparent;
+                        border: 2px solid ${({theme}) => theme.colors.green};
+                        transition: none;
+                    }
+
+                }
                 
             }
         }
