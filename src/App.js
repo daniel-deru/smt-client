@@ -1,5 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom"
 
+import { useSelector } from "react-redux";
+
 import Appsumo from "./routes/Appsumo";
 import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
@@ -8,21 +10,28 @@ import Downloads from "./routes/Dashboard/Downloads";
 import Products from "./routes/Dashboard/Products";
 import Account from "./routes/Dashboard/Account";
 import Support from "./routes/Dashboard/Support";
+import WorkMate from "./routes/Dashboard/Products/WorkMate";
+import Commerce from "./routes/Dashboard/Products/Commerce";
+
 
 function App() {
+
   return (
-    // https://avatars.dicebear.com/api/avataaars/ab.svg
     <div className="App">
           <Routes>
             {/* Temporary redirect */}
-              <Route path="/" element={<Navigate to="appsumo" />}/>
+              <Route path="/" element={<Navigate to="login" />}/>
               <Route path="/appsumo" element={<Appsumo />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard/>}>
                 <Route path="" element={<Navigate to="account" />}/>
                 <Route path="downloads" element={<Downloads />}/>
-                <Route path="products" element={<Products />}/>
+                <Route path="products" >
+                  <Route path="" element={<Products />}/>
+                  <Route path="workmate" element={<WorkMate/>}/>
+                  <Route path="commerce" element={<Commerce/>}/>
+                </Route>
                 <Route path="account" element={<Account />}/>
                 <Route path="support" element={<Support />}/>
               </Route>
