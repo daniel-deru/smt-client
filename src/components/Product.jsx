@@ -1,14 +1,24 @@
 import { useNavigate } from "react-router"
+import { useEffect, useState } from "react"
 
 import { ProductComponent } from "../styled/Product.styled"
 
-const Product = ({product}) => {
+const Product = ({product: p}) => {
+
+  const [product, setProduct] = useState(p)
 
   const navigate = useNavigate()
 
   const showProduct = () => {
     navigate(product.name.toLowerCase())
   }
+
+  useEffect(() => {
+    let expiry = new Date(p.expiry).toLocaleDateString()
+    let display = expiry
+    setProduct(prevProduct => ({...prevProduct, expiry}))
+  }, [])
+
   return (
     <ProductComponent>
       <div>{product.name}</div>

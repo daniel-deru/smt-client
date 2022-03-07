@@ -98,8 +98,8 @@ const Account = () => {
 
   const fillInFields = () => {
     if(user){
-      firstNameRef.current.value = user["first name"]
-      lastNameRef.current.value = user['last name']
+      firstNameRef.current.value = user.first_name
+      lastNameRef.current.value = user.last_name
       displayNameRef.current.value = user.display_name
       contactEmailRef.current.value = user.contact_email
       contactNumberRef.current.value = user.contact_number

@@ -11,8 +11,8 @@ const Nav = () => {
     return (
         <NavComponent>
             <section>
-                <img  src={`https://avatars.dicebear.com/api/avataaars/${user.display_name}.svg`} alt="" />
-                <h4>{user.display_name}</h4>
+                <img  src={`https://avatars.dicebear.com/api/avataaars/${user.display_name ? user.display_name : user.first_name}.svg`} alt="" />
+                <h4>{user.display_name ? user.display_name : `${user.first_name} ${user.last_name}`}</h4>
             </section>
             <ul>
                 <li>

@@ -106,7 +106,7 @@ const Redeem = () => {
     console.log("This is the valid data verification", validData)
     if(validData){
       try {
-        const check = await axios.post("http://localhost:8000/api/appsumo", payload)
+        const check = await axios.post("http://localhost:8000/api/appsumo/redeem", payload)
         const data = check.data
         console.log("This is the return data from the server after the user is created.", data)
         if(data.pass){
@@ -198,7 +198,7 @@ const Redeem = () => {
             <div className='form-field'>
               <button type="button" onClick={() => submit()}>Let's Go</button>
             </div>
-           
+            <div className="login-link">Already have an account? <Link to="/appsumo/login">Go Here</Link></div>
 
         </form>}
 
@@ -207,7 +207,7 @@ const Redeem = () => {
             <button onClick={() => Resend()}>Resend Email</button>
           </div>
         }
-        <div className="login-link">Already have an account? <Link to="/appsumo/login">Go Here</Link></div>
+        
     </RedeemPage>
   )
 }
