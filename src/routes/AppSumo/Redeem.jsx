@@ -1,10 +1,12 @@
 import axios from "axios"
 import { useRef, useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router"
 
-import { AppSumoPage } from '../styled/AppSumo.styled'
+// import { AppSumoPage } from '../../styled/AppSumo.styled'
+import { RedeemPage } from "../../styled/AppSumo/Redeem.styled"
 
-const Appsumo = () => {
+const Redeem = () => {
   // Indexes for the errors
   const FIRSTNAME = 0
   const LASTNAME = 1
@@ -16,6 +18,8 @@ const Appsumo = () => {
   const firstNameRef = useRef()
   const lastNameRef = useRef()
   const emailRef = useRef()
+
+  const navigate = useNavigate()
 
   // success state if the submit was successfull
   const [submitSuccess, setSubmitSuccess] = useState(false)
@@ -101,13 +105,20 @@ const Appsumo = () => {
     let validData = await verify(payload)
     console.log("This is the valid data verification", validData)
     if(validData){
-      const check = await axios.post("http://localhost:8000/api/appsumo", payload)
-      const data = check.data
-      console.log("This is the return data from the server after the user is created.", data)
-      if(data.pass){
-        setSubmitSuccess(true)
-        setUser(data.user_id)
+      try {
+        const check = await axios.post("http://localhost:8000/api/appsumo", payload)
+        const data = check.data
+        console.log("This is the return data from the server after the user is created.", data)
+        if(data.pass){
+          setSubmitSuccess(true)
+          setUser(data.user_id)
+        }
+      } catch (e){
+        if(e?.response?.status == 301){
+          navigate("login")
+        }
       }
+      
     }
 
   }
@@ -123,12 +134,12 @@ const Appsumo = () => {
 
  
   return (
-    <AppSumoPage>
+    <RedeemPage>
       
         <header>
-            <img id='smt-logo' src="./images/smt-logo-name.png" alt="" />
+            <img id='smt-logo' src="../images/smt-logo-name.png" alt="" />
             <span className='separator'>&amp;</span>
-            <img id='appsumo-logo' src="./images/appsumo-logo-white.png" alt="" />
+            <img id='appsumo-logo' src="../images/appsumo-logo-white.png" alt="" />
         </header>
 
         { !submitSuccess && 
@@ -196,9 +207,9 @@ const Appsumo = () => {
             <button onClick={() => Resend()}>Resend Email</button>
           </div>
         }
-        <div className="login-link">Already have an account? <Link to="/login">Go Here</Link></div>
-    </AppSumoPage>
+        <div className="login-link">Already have an account? <Link to="/appsumo/login">Go Here</Link></div>
+    </RedeemPage>
   )
 }
 
-export default Appsumo
+export default Redeem

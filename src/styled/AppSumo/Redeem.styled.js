@@ -1,11 +1,11 @@
 import styled from "styled-components"
 
-export const AppSumoPage = styled.main`
+export const RedeemPage = styled.main`
     height: 100vh;
     margin: auto;
     font-size: 1.1em;
     font-family: sans-serif;
-    background-image: url("./images/background.jpg");
+    background-image: url("../images/background.jpg");
     padding-bottom: 1rem;
     box-sizing: border-box;
     color: black;
@@ -41,7 +41,6 @@ export const AppSumoPage = styled.main`
         h4 {
             color: ${({theme}) => theme.colors.green};
             font-size: 2em;
-            /* margin-top: -0.25rem; */
         }
     }
 

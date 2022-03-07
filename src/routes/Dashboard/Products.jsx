@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import Product from "../../components/Product"
 import { ProductsPage } from "../../styled/Dashboard/Products.styled"
@@ -9,15 +9,14 @@ const HEADER = ["Name", "Price", "Expiry", "Status", "Manage"]
 const Products = () => {
   const { products } = useSelector(state => state.products)
 
+  const [redeemModel, setRedeemModal] = useState(false)
+
 
   useEffect(() => {
     console.log(products)
   }, [])
   return (
     <ProductsPage>
-      <div className="redeem-container">
-        <button>Redeem Code</button>
-      </div>
       <h1>All your glorious products</h1>
       <div className="header">
         {HEADER.map(head => (
