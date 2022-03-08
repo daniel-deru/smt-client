@@ -8,15 +8,23 @@ import { WorkMatePage } from "../../../styled/Products/WorkMate.styled"
 const WorkMate = () => {
   const emailRef = useRef()
   const [emailList, setEmailList] = useState([])
+  const [error, setError] = useState()
 
   const navigate = useNavigate()
 
   const addEmail = () => {
     const email = emailRef.current.value
     const date = new Date(Date.now()).toLocaleDateString()
+
     if(email){
-      setEmailList(prevList => ([...prevList, {email, date}]))
-      emailRef.current.value = ""
+      const itemExists = emailList.filter(emailItem => emailItem.email == email)
+      if(!itemExists){
+        setEmailList(prevList => ([...prevList, {email, date}]))
+        emailRef.current.value = ""
+      } else {
+          setError("Cannot add the same email twice")
+      }
+
     }
     
   }
