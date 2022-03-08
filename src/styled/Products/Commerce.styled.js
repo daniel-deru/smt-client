@@ -73,6 +73,7 @@ export const CommercePage = styled.div`
         font-weight: 900;
         border-bottom: 1px solid black;
         margin-bottom: 2rem;
+        box-sizing: border-box;
         padding: 10px;
 
         div {
@@ -87,7 +88,6 @@ export const CommercePage = styled.div`
     .display {
         width: 70%;
         margin: auto;
-        padding: 10px;
         .display-item {
             display: flex;
             justify-content: space-between;
@@ -103,7 +103,7 @@ export const CommercePage = styled.div`
 
             div:last-child {
                 text-align: right;
-                margin-right: 10px;
+                /* margin-right: 10px; */
             }
 
             .delete {

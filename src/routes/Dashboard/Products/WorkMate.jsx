@@ -18,12 +18,12 @@ const WorkMate = () => {
 
     if(email){
       const itemExists = emailList.filter(emailItem => emailItem.email == email)
-      if(!itemExists){
+      // if(!itemExists){
         setEmailList(prevList => ([...prevList, {email, date}]))
         emailRef.current.value = ""
-      } else {
-          setError("Cannot add the same email twice")
-      }
+      // } else {
+      //     setError("Cannot add the same email twice")
+      // }
 
     }
     
