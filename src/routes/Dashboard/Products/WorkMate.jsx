@@ -1,16 +1,58 @@
+import { useRef, useState } from "react"
 import { IoMdArrowBack } from "react-icons/io"
+import { FaTimes } from "react-icons/fa"
+import { useNavigate } from "react-router"
+
+import { WorkMatePage } from "../../../styled/Products/WorkMate.styled"
 
 const WorkMate = () => {
-  return (
-    <div>
-        <header>
-            <div>
-                <IoMdArrowBack />
-            </div>
-            <h1>WorkMate</h1>
+  const emailRef = useRef()
+  const [emailList, setEmailList] = useState([])
 
+  const navigate = useNavigate()
+
+  const addEmail = () => {
+    const email = emailRef.current.value
+    const date = new Date(Date.now()).toLocaleDateString()
+    if(email){
+      setEmailList(prevList => ([...prevList, {email, date}]))
+      emailRef.current.value = ""
+    }
+    
+  }
+  return (
+    <WorkMatePage>
+        <header>
+                <IoMdArrowBack className="back" onClick={() => {navigate("../")}}/>
+                <h1>Manage Your WorkMate Account</h1>
         </header>
-    </div>
+        <main>
+
+          <div className="add">
+            <input type="text" ref={emailRef}/>
+            <button type="button" onClick={() => addEmail()}>Add</button>
+          </div>
+
+          <div className="headers">
+              <div>Email</div>
+              <div>Date Registered</div>
+              <div>Delete</div>
+          </div>
+
+          <div className="display">
+            {emailList && emailList.map(data => (
+              <div className="display-item">
+
+                <div>{data.email}</div>
+                <div>{data.date}</div>
+                <div><FaTimes className="delete"/></div>
+
+              </div>
+            ))}
+          </div>
+
+        </main>
+    </WorkMatePage>
   )
 }
 

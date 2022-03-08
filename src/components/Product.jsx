@@ -12,6 +12,10 @@ const Product = ({product: p}) => {
   const showProduct = () => {
     navigate(product.name.toLowerCase())
   }
+
+  const downloadProduct = () => {
+    window.location.assign(`http://localhost:8000/users/downloadproduct?id=${product.product_id}`)
+  }
   console.log(product)
 
   useEffect(() => {
@@ -29,7 +33,7 @@ const Product = ({product: p}) => {
       <div>{product.expiry}</div>
       <div>{product.activations}/{product.uses}</div>
       <div>
-        <button className="download" type="button">Download</button>
+        <button className="download" type="button" onClick={() => downloadProduct()}>Download</button>
       </div>
       <div>
         <button type="button" onClick={() => showProduct()}>Manage</button>

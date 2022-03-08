@@ -25,7 +25,7 @@ export const ProductComponent = styled.div`
 
             &:active {
                 background-color: transparent;
-                border: 2px solid ${({theme}) => theme.colors.orange};
+                border: 2px solid ${({theme}) => theme.colors.lightBlue};
                 color: black;
                 transition: none;
             }
@@ -48,7 +48,7 @@ export const ProductComponent = styled.div`
 
             &:active {
                 background-color: transparent;
-                border: 2px solid ${({theme}) => theme.colors.orange};
+                border: 2px solid ${({theme}) => theme.colors.lightBlue};
                 color: black;
                 transition: none;
             }

@@ -2,10 +2,14 @@ import { Route, Routes, Navigate } from "react-router-dom"
 
 import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
+
+
 import Dashboard from "./routes/Dashboard";
 import Products from "./routes/Dashboard/Products";
 import Account from "./routes/Dashboard/Account";
 import Support from "./routes/Dashboard/Support";
+
+
 import WorkMate from "./routes/Dashboard/Products/WorkMate";
 import Commerce from "./routes/Dashboard/Products/Commerce";
 
@@ -21,7 +25,7 @@ function App() {
     <div className="App">
           <Routes>
             {/* Temporary redirect */}
-              <Route path="/" element={<Navigate to="login" />}/>
+              <Route path="/" element={<Navigate to="dashboard" />}/>
 
               <Route path="/appsumo">
                 <Route path="" element={<Navigate to="redeem" />} />
