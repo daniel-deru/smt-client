@@ -5,6 +5,7 @@ import axios from "axios"
 import { useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
 import { login } from "../../store/user"
+import { setProducts } from "../../store/products"
 
  
 
@@ -43,13 +44,18 @@ const AppSumoLogin = () => {
             const login_request = await axios.post("http://localhost:8000/users/login", payload, headers)
             const response = login_request.data
             if(response.pass){
-                dispatch(login(
-                    {
-                    name: response.name,
-                    email: response.email,
+                try {
+                    const request = await axios.post("http://localhost:8000/users/account/get", null, { withCredentials: true })
+                    if(request.data){
+                        dispatch(login(request.data.user))
+                        dispatch(setProducts(request.data.products))
                     }
-                ))
-            navigate("../upgrade")
+                } catch (e) {
+                    console.log(e)
+                }
+                
+
+                navigate("../upgrade")
             }
         } catch (e) {
             console.log(e)

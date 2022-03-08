@@ -15,7 +15,6 @@ const Product = ({product: p}) => {
 
   useEffect(() => {
     let expiry = new Date(p.expiry).toLocaleDateString()
-    let display = expiry
     setProduct(prevProduct => ({...prevProduct, expiry}))
   }, [])
 
