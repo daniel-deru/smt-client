@@ -3,7 +3,6 @@ import { Route, Routes, Navigate } from "react-router-dom"
 import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
 import Dashboard from "./routes/Dashboard";
-import Downloads from "./routes/Dashboard/Downloads";
 import Products from "./routes/Dashboard/Products";
 import Account from "./routes/Dashboard/Account";
 import Support from "./routes/Dashboard/Support";
@@ -36,9 +35,7 @@ function App() {
 
               <Route path="/dashboard" element={<Dashboard/>}>
 
-                <Route path="" element={<Navigate to="account" />}/>
-                <Route path="downloads" element={<Downloads />}/>
-
+                <Route path="" element={<Navigate to="products" />}/>
                 <Route path="products" >
                   <Route path="" element={<Products />}/>
                   <Route path="workmate" element={<WorkMate/>}/>

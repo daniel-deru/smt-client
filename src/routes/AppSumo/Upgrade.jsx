@@ -1,6 +1,7 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
+import { useNavigate } from "react-router"
 
 
 import { UpgradePage } from "../../styled/AppSumo/Upgrade.styled"
@@ -8,11 +9,29 @@ import { setProducts } from "../../store/products"
 import { login } from "../../store/user"
 
 const Upgrade = () => {
+
+    const codeRef = useRef()
+
+    const navigate = useNavigate()
     
     const { user } = useSelector(state => state.user)
     const { products } = useSelector(state => state.products)
     const dispatch = useDispatch()
-    console.log(user, products)
+
+    const claim = async () => {
+        try {
+            if(codeRef.current.value){
+                const request = await axios.post("http://localhost:8000/api/appsumo/upgrade", {appSumoCode: codeRef.current.value}, { withCredentials: true })
+                if(request.data){
+                    console.log(request.data)
+                    navigate("../../dashboard")
+                }
+            }
+           
+        } catch (e){
+            console.log(e)
+        }
+    }
 
     useEffect(async () => {
         try {
@@ -34,21 +53,13 @@ const Upgrade = () => {
             <form>
                 <div>
                     <label>Enter your AppSumo Code</label>
-                    <input type="text" />
+                    <input type="text" ref={codeRef}/>
                 </div>
                 <div>
-                    <button type="button">Claim</button>
+                    <button type="button" onClick={() => claim()}>Claim</button>
                 </div>
             </form>
             <section className="user-info">
-                {/* <p>Name: {user.first_name} {user.last_name}</p>
-                <p>Email: {user.email}</p>
-                <div>
-                    Product(s):
-                    {products.map(product => (
-                        <span> {product.name}</span>
-                    ))}
-                </div> */}
                 <div className="labels">
                     <div>Name</div>
                     <div>Email</div>

@@ -19,7 +19,30 @@ export const ProductComponent = styled.div`
             transition: .3s ease-in-out;
 
             &:hover {
-                background-color: ${({theme}) => theme.colors.orange};
+                background-color: ${({theme}) => theme.colors.lightBlue};
+                color: white;
+            }
+
+            &:active {
+                background-color: transparent;
+                border: 2px solid ${({theme}) => theme.colors.orange};
+                color: black;
+                transition: none;
+            }
+        }
+
+        .download {
+            background-color: ${({theme}) => theme.colors.orange };
+            border: 2px solid transparent;
+            border-radius: 5px;
+            font-size: 0.8em;
+            padding: 5px 20px;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+            color: white;
+
+            &:hover {
+                background-color: ${({theme}) => theme.colors.lightBlue};
                 color: white;
             }
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Product from "../../components/Product"
 import { ProductsPage } from "../../styled/Dashboard/Products.styled"
 
-const HEADER = ["Name", "Price", "Expiry", "Status", "Manage"]
+const HEADER = ["Name", "Price", "Expiry", "Uses", "Download", "Manage"]
 
 const Products = () => {
   const { products } = useSelector(state => state.products)

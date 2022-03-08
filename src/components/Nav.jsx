@@ -16,9 +16,6 @@ const Nav = () => {
             </section>
             <ul>
                 <li>
-                    <NavLink to="downloads" >Downloads</NavLink>
-                </li>
-                <li>
                     <NavLink to="products" >Products</NavLink>
                 </li>
                 <li>

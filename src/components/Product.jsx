@@ -12,10 +12,14 @@ const Product = ({product: p}) => {
   const showProduct = () => {
     navigate(product.name.toLowerCase())
   }
+  console.log(product)
 
   useEffect(() => {
-    let expiry = new Date(p.expiry).toLocaleDateString()
-    setProduct(prevProduct => ({...prevProduct, expiry}))
+    if(Date.parse(p.expiry)){
+      let expiry = new Date(p.expiry).toLocaleDateString()
+      setProduct(prevProduct => ({...prevProduct, expiry}))
+    }
+
   }, [])
 
   return (
@@ -23,7 +27,10 @@ const Product = ({product: p}) => {
       <div>{product.name}</div>
       <div>${product.price}.00</div>
       <div>{product.expiry}</div>
-      <div>{product.active ? "active": "inactive"}</div>
+      <div>{product.activations}/{product.uses}</div>
+      <div>
+        <button className="download" type="button">Download</button>
+      </div>
       <div>
         <button type="button" onClick={() => showProduct()}>Manage</button>
       </div>
