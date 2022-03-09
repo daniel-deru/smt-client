@@ -1,10 +1,13 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useNavigate } from "react-router"
-import { FaTimes } from "react-icons/fa"
+
 import { IoMdArrowBack } from "react-icons/io"
+import axios from "axios"
 
 
 import { CommercePage } from "../../../styled/Products/Commerce.styled"
+
+import Website from "../../../components/Products/Commerce/Website"
 
 const Commerce = () => {
 
@@ -13,16 +16,72 @@ const Commerce = () => {
   const websiteRef = useRef()
 
   const [websiteList, setWebsiteList] = useState([])
+  const [error, setError] = useState("")
 
-  const addWebsite = () => {
+
+  const addWebsite = async () => {
     const website = websiteRef.current.value
     const date = new Date(Date.now()).toLocaleDateString()
 
     if(website){
-      setWebsiteList(prevList => ([...prevList, {website, date}]))
-      websiteRef.current.value = ""
+      if(!websiteExists(website)){
+
+        const request = await axios.post("http://localhost:8000/api/commerce/websites?action=add", {website, date}, { withCredentials: true })
+        if(request.data.pass){
+
+          setWebsiteList(prevList => ([...prevList, {website, date}]))
+          websiteRef.current.value = ""
+          setError("")
+        }
+      }
+    }
+
+    else {
+      setError("Please enter a website address.")
     }
   }
+
+
+  const websiteExists = (website) => {
+    const websiteRegEx = /^(https:\/\/)?(\w+\.)?\w+\.\w{1,9}(\.{1,5})?$/
+    if(websiteRegEx.test(website)){
+
+      const result = websiteList.filter(item => item.website == website)
+
+      if(result.length == 0){
+        return false
+      } 
+
+      else {
+        setError("This website has already been added")
+      }
+
+    } else {
+        setError("The website you entered is not valid.")
+      }
+    return true
+    
+  }
+
+
+  const getwebsites = async () => {
+    try {
+      const request = await axios.post("http://localhost:8000/api/commerce/websites?action=get", {}, { withCredentials: true })
+      if(request.data.pass){
+        setWebsiteList(request.data.websites)
+      }
+    } catch (e){
+      console.log(e.response)
+    }
+  }
+
+  const deleteWebsite = async (e) => {
+    console.log(e.target.parent)
+  }
+
+  useEffect(async () => {
+    getwebsites()
+  }, [])
 
   return (
     <CommercePage>
@@ -37,6 +96,10 @@ const Commerce = () => {
             <button onClick={() => addWebsite()}>Add</button>  
           </div>
 
+          <div className="errors">
+              <p>{error}</p>
+          </div>
+
           <div className="headers">
             <div>Website</div>
             <div>Date Registered</div>
@@ -45,11 +108,7 @@ const Commerce = () => {
 
           <div className="display">
               {websiteList.map(item => (
-                <div className="display-item" key={item.website}>
-                  <div>{item.website}</div>
-                  <div>{item.date}</div>
-                  <div><FaTimes className="delete"/></div>
-                </div>
+                  <Website key={item.website}  item={item}/>
               ))}
           </div>
         </main>

@@ -87,29 +87,6 @@ export const CommercePage = styled.div`
     .display {
         width: 70%;
         margin: auto;
-        .display-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-radius: 5px;
-            &:nth-child(odd){
-                background-color: #ddd;
-            }
-
-            div {
-                width: 100%;
-            }
-
-            div:last-child {
-                text-align: right;
-            }
-
-            .delete {
-                color: red;
-                cursor: pointer;
-                font-size: 1.5em;
-            }
-        }
     }
 
 `
