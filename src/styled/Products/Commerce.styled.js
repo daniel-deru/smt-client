@@ -2,7 +2,6 @@ import styled from "styled-components"
 
 export const CommercePage = styled.div`
     font-size: 1.25em;
-    /* box-sizing: border-box; */
 
     header {
         display: flex;
@@ -30,7 +29,7 @@ export const CommercePage = styled.div`
     .add {
         width: 70%;
         margin: 2rem auto;
-        /* box-sizing: border-box; */
+
         input {
             font-size: 1em;
             border-radius: 5px;
@@ -103,7 +102,6 @@ export const CommercePage = styled.div`
 
             div:last-child {
                 text-align: right;
-                /* margin-right: 10px; */
             }
 
             .delete {
