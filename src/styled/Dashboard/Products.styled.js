@@ -14,7 +14,7 @@ export const ProductsPage = styled.div`
             background-color: ${({theme}) => theme.colors.lightBlue};
             color: white;
             border: 2px solid transparent;
-            font-size: 1em;
+            font-size: 0.75em;
             padding: 5px 20px;
             border-radius: 5px;
             cursor: pointer;
@@ -27,7 +27,7 @@ export const ProductsPage = styled.div`
             }
         }
         h1 {
-            font-size: 1em;
+            font-size: 1.25em;
             text-align: center;
             width: fit-content;
             margin: 1rem auto;

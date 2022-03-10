@@ -56,10 +56,13 @@ const Account = () => {
       address1,
       address2,
     }
+
+
     // Check if the data is filled in
     // Check if the data is different from the user in state
+    // console.log(user)
     let filledInData = Object.entries(info).filter((item) => {
-      if(item[1] && user[item[0]] && user[item[0]] != item[1]){
+      if(item[1] && user[item[0]] != item[1]){
         return true
       }
       else return false
@@ -76,7 +79,7 @@ const Account = () => {
 
   const update = async () => {
     const updatedData = filterData()
-    
+    console.log(updatedData)
     if(Object.keys(updatedData).length > 0){
       console.log(Object.keys(updatedData))
       try {

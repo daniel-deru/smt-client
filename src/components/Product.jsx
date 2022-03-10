@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router"
 import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import axios from "axios"
 
 import { setProducts } from "../store/products"
@@ -13,14 +13,13 @@ const Product = ({product: p}) => {
 
   const navigate = useNavigate()
   const { products } = useSelector(state => state.products)
-  const dispatch = useDispatch()
 
   const [product, setProduct] = useState(p)
   const [activations, setActivations] = useState(1)
 
   useEffect(async () => {
     if(Date.parse(p.expiry)){
-      let expiry = new Date(p.expiry).toLocaleDateString()
+      let expiry = new Date(p.expiry).toLocaleString()
       setProduct(prevProduct => ({...prevProduct, expiry}))
     }
     await getActiveUses()

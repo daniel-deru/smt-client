@@ -23,12 +23,12 @@ const Commerce = () => {
 
   const addWebsite = async () => {
     const website = websiteRef.current.value
-    const date = new Date(Date.now()).toLocaleDateString()
+    const date = new Date(Date.now()).toLocaleString()
 
     const commerceProduct = getProduct()
 
     const inList = websiteList.filter(item => item.website == website)
-    
+
     if(!website) return setError("Please enter a website")
     else if (commerceProduct.uses <= websiteList.length) return setError("Your account does not allow anymore installations.")
     else if(inList.length > 0) return setError("This website has already been added")

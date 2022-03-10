@@ -18,7 +18,7 @@ const Products = () => {
     <ProductsPage>
 
       <div className="top">
-        <button onClick={() => navigate("../../../appsumo/upgrade")}>Redeem Code</button>
+        <button onClick={() => navigate("../../../appsumo/upgrade")}>Stack AppSumo Code</button>
         <h1>All your glorious products</h1>
       </div>
       
