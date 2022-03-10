@@ -25,43 +25,29 @@ const Commerce = () => {
     const website = websiteRef.current.value
     const date = new Date(Date.now()).toLocaleDateString()
 
-    if(website){
-      if(!websiteExists(website)){
+    const commerceProduct = getProduct()
 
-        const request = await axios.post("http://localhost:8000/api/commerce/websites?action=add", {website, date}, { withCredentials: true })
-        if(request.data.pass){
-
-          setWebsiteList(prevList => ([...prevList, {website, date}]))
-          websiteRef.current.value = ""
-          setError("")
-        }
-      }
-    }
-
+    const inList = websiteList.filter(item => item.website == website)
+    
+    if(!website) return setError("Please enter a website")
+    else if (commerceProduct.uses <= websiteList.length) return setError("Your account does not allow anymore installations.")
+    else if(inList.length > 0) return setError("This website has already been added")
+    else if(!validWebsite(website)) return setError("The website you entered is not valid.")
     else {
-      setError("Please enter a website address.")
+      const request = await axios.post("http://localhost:8000/api/commerce/websites?action=add", {website, date}, { withCredentials: true })
+      if(request.data.pass){
+
+        setWebsiteList(prevList => ([...prevList, {website, date}]))
+        websiteRef.current.value = ""
+        setError("")
+      }
     }
   }
 
 
-  const websiteExists = (website) => {
+  const validWebsite = (website) => {
     const websiteRegEx = /^(https:\/\/)?(\w+\.)?\w+\.\w{1,9}(\.{1,5})?$/
-    if(websiteRegEx.test(website)){
-
-      const result = websiteList.filter(item => item.website == website)
-
-      if(result.length == 0){
-        return false
-      } 
-
-      else {
-        setError("This website has already been added")
-      }
-
-    } else {
-        setError("The website you entered is not valid.")
-      }
-    return true
+    return websiteRegEx.test(website)
     
   }
 
@@ -70,7 +56,7 @@ const Commerce = () => {
     try {
       const request = await axios.post("http://localhost:8000/api/commerce/websites?action=get", {}, { withCredentials: true })
       if(request.data.pass){
-        setWebsiteList(request.data.websites)
+        setWebsiteList(request.data.accounts)
       }
     } catch (e){
       console.log(e.response)
@@ -87,6 +73,10 @@ const Commerce = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+
+  const getProduct = () => {
+    return products.filter(product => product.name == "Commerce")[0]
   }
 
   useEffect(async () => {

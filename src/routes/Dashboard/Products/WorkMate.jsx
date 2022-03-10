@@ -49,7 +49,7 @@ const WorkMate = () => {
 
           <div className="display">
             {emailList && emailList.map(data => (
-              <div className="display-item">
+              <div className="display-item" key={data.email}>
 
                 <div>{data.email}</div>
                 <div>{data.date}</div>

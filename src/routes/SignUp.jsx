@@ -157,9 +157,6 @@ const SignUp = () => {
                     </div>
 
                 </form>
-                <ul>
-                    {/* {messages.map((message) => <li key={message}>{message}</li>)} */}
-                </ul>
             
         </SignUpPage>
     )

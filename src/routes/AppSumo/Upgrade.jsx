@@ -71,7 +71,7 @@ const Upgrade = () => {
                     <div>{user.email}</div>    
                     <div>
                         {products.map(product => (
-                        <div>{product.name} ({product.uses} Account{product.uses > 1 ? "s" : ""})</div>
+                        <div key={product.name}>{product.name} ({product.uses} Account{product.uses > 1 ? "s" : ""})</div>
                         ))}
                     </div>    
                 </div>
