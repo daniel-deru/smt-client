@@ -52,6 +52,7 @@ export const UpgradePage = styled.div`
                     border-radius: 5px;
                     color: white;
                     cursor: pointer;
+                    margin: 1rem;
                     transition: .3s ease-in-out;
 
                     &:hover {

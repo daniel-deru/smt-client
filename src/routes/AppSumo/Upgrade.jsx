@@ -57,6 +57,7 @@ const Upgrade = () => {
                 </div>
                 <div>
                     <button type="button" onClick={() => claim()}>Claim</button>
+                    <button onClick={() => navigate("../../dashboard")}>Go To Dashboard</button>
                 </div>
             </form>
             <section className="user-info">

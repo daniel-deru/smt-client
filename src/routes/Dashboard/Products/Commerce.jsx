@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { useNavigate } from "react-router"
+import { useSelector } from "react-redux"
 
 import { IoMdArrowBack } from "react-icons/io"
 import axios from "axios"
@@ -12,6 +13,7 @@ import Website from "../../../components/Products/Commerce/Website"
 const Commerce = () => {
 
   const navigate = useNavigate()
+  const { products } = useSelector(state => state.products)
 
   const websiteRef = useRef()
 

@@ -4,10 +4,37 @@ import styled from "styled-components"
 export const ProductsPage = styled.div`
     font-size: 1.5em;
 
-    h1 {
-        font-size: 1em;
-        text-align: center;
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        button {
+            height: fit-content;
+            background-color: ${({theme}) => theme.colors.lightBlue};
+            color: white;
+            border: 2px solid transparent;
+            font-size: 1em;
+            padding: 5px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+
+            &:active {
+                background-color: transparent;
+                border: 2px solid ${({theme}) => theme.colors.lightBlue};
+                color: black;
+            }
+        }
+        h1 {
+            font-size: 1em;
+            text-align: center;
+            width: fit-content;
+            margin: 1rem auto;
+        }
     }
+
+
 
     .redeem-container {
         display: flex;
