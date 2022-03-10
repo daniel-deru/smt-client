@@ -5,12 +5,7 @@ import { useEffect } from "react"
 
 import { WebsiteItem } from "../../../styled/Components/Commerce/Website.styled"
 
-const Website = ({ item }) => {
-
-    const deleteWebsite = (e) => {
-    }
-
-    console.log(item)
+const Website = ({ item, deleteWebsite }) => {
 
     useEffect(() => {
         console.log(item)
@@ -19,7 +14,7 @@ const Website = ({ item }) => {
         <WebsiteItem>
             <div>{item.website}</div>
             <div>{item.date}</div>
-            <div onClick={(e) => deleteWebsite(e)}><FaTimes className="delete" /></div>
+            <div onClick={() => deleteWebsite(item)}><FaTimes className="delete" /></div>
         </WebsiteItem>
     )
 }

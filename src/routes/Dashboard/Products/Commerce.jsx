@@ -75,8 +75,16 @@ const Commerce = () => {
     }
   }
 
-  const deleteWebsite = async (e) => {
-    console.log(e.target.parent)
+  const deleteWebsite = async (item) => {
+    const remainingWebsites = websiteList.filter(account => item.website != account.website)
+    setWebsiteList(remainingWebsites)
+
+    try {
+      const request = await axios.post("http://localhost:8000/api/commerce/websites?action=delete", {website: item.website}, { withCredentials: true })
+      setError("")
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   useEffect(async () => {
@@ -96,7 +104,7 @@ const Commerce = () => {
             <button onClick={() => addWebsite()}>Add</button>  
           </div>
 
-          <div className="errors">
+          <div className="error">
               <p>{error}</p>
           </div>
 
@@ -108,7 +116,7 @@ const Commerce = () => {
 
           <div className="display">
               {websiteList.map(item => (
-                  <Website key={item.website}  item={item}/>
+                  <Website key={item.website}  item={item} deleteWebsite={deleteWebsite}/>
               ))}
           </div>
         </main>

@@ -63,6 +63,11 @@ export const CommercePage = styled.div`
         }
     }
 
+    .error {
+        color: red;
+        text-align: center;
+    }
+
 
     .headers {
         display: flex;
@@ -71,7 +76,7 @@ export const CommercePage = styled.div`
         justify-content: space-between;
         font-weight: 900;
         border-bottom: 1px solid black;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         box-sizing: border-box;
         padding: 10px;
 
