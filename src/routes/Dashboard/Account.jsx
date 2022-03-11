@@ -183,7 +183,7 @@ const Account = () => {
               <div className='field-container'>
                 <label>Contact Number</label>
                 <div className="number">
-                  <DialCodeDropDown />
+                  <DialCodeDropDown countries={countries}/>
                   <input type="text" ref={contactNumberRef} />
                 </div>
 
