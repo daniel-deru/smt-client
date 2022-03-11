@@ -24,7 +24,7 @@ export const AccountPage = styled.div`
             display: grid;
             grid-gap: 1rem;
             grid-template-columns: 1fr 1fr;
-            > div {
+            > .field-container {
                 width: 90%;
                 margin: auto;
                 label {
@@ -41,6 +41,19 @@ export const AccountPage = styled.div`
                     border-radius: 5px;
                     border: 1px solid black;
                     padding: 5px;
+                }
+
+                .number {
+                    display: flex;
+                    width: 102%;
+                    padding: 0px;
+                    margin: 0px;
+
+                    input {
+                        width: 100%;
+                        border-top-left-radius: 0px;
+                        border-bottom-left-radius: 0px;
+                    }
                 }
             }
         }

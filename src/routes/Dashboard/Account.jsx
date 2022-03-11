@@ -4,6 +4,7 @@ import { useNavigate } from "react-router"
 import axios from "axios"
 
 import CountryDropDown from "../../components/CountryDropDown"
+import DialCodeDropDown from "../../components/DialCodeDropDown"
 
 
 import { AccountPage } from "../../styled/Dashboard/Account.styled"
@@ -181,7 +182,11 @@ const Account = () => {
           <div>
               <div className='field-container'>
                 <label>Contact Number</label>
-                <input type="text" ref={contactNumberRef}/>
+                <div className="number">
+                  <DialCodeDropDown />
+                  <input type="text" ref={contactNumberRef} />
+                </div>
+
               </div>
 
               <div className='field-container'>

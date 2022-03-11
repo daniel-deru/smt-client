@@ -46,6 +46,10 @@ export const CountryDropDownComponent = styled.div`
         li {
             padding: 5px;
             display: flex;
+
+            img {
+                width: 20px;
+            }
             span {
                 padding-left: 20px;   
                 flex: 5
@@ -57,7 +61,5 @@ export const CountryDropDownComponent = styled.div`
         }
 
     }
-    img {
-        width: 20px;
-    }
+
 `
