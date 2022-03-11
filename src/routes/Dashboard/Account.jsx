@@ -20,6 +20,7 @@ const Account = () => {
   const displayNameRef = useRef()
   const contactEmailRef = useRef()
   const contactNumberRef = useRef()
+  const dialCodeRef = useRef()
   const companyNameRef = useRef()
   const countryRef = useRef()
   const provinceRef = useRef()
@@ -40,9 +41,9 @@ const Account = () => {
     const last_name = lastNameRef.current.value
     const display_name = displayNameRef.current.value
     const contact_email = contactEmailRef.current.value
-    const contact_number = contactNumberRef.current.value
+    const contact_number = document.getElementById("dial-code").innerText + contactNumberRef.current.value
     const company_name = companyNameRef.current.value
-    const country = countryRef.current.value
+    const country = document.getElementById("country").value
     const province = provinceRef.current.value
     const city = cityRef.current.value
     const post_code = postalRef.current.value
@@ -63,7 +64,6 @@ const Account = () => {
       address1,
       address2,
     }
-
 
     // Check if the data is filled in
     // Check if the data is different from the user in state
@@ -86,23 +86,22 @@ const Account = () => {
 
   const update = async () => {
     const updatedData = filterData()
-    console.log(updatedData)
-    if(Object.keys(updatedData).length > 0){
-      console.log(Object.keys(updatedData))
-      try {
-        const request = await axios.post("http://localhost:8000/users/account/update", updatedData, {withCredentials: true})
-        const response = request.data
-        if(response.pass){
-          console.log(response)
-          window.location.reload(false)
-        }
-      } catch (e) {
-        if(e?.response?.status == 403){
-          navigate("/login")
-        }
-      }
+    // if(Object.keys(updatedData).length > 0){
+    //   console.log(Object.keys(updatedData))
+    //   try {
+    //     const request = await axios.post("http://localhost:8000/users/account/update", updatedData, {withCredentials: true})
+    //     const response = request.data
+    //     if(response.pass){
+    //       console.log(response)
+    //       window.location.reload(false)
+    //     }
+    //   } catch (e) {
+    //     if(e?.response?.status == 403){
+    //       navigate("/login")
+    //     }
+    //   }
 
-    }
+    // }
     
   }
 
@@ -114,7 +113,7 @@ const Account = () => {
       contactEmailRef.current.value = user.contact_email
       contactNumberRef.current.value = user.contact_number
       companyNameRef.current.value = user.company_name
-      // countryRef.current.innerText = user.country
+      document.getElementById("country").value = user.country
       provinceRef.current.value = user.province
       cityRef.current.value = user.city
       postalRef.current.value = user.post_code

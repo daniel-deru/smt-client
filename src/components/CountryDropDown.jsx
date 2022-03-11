@@ -43,7 +43,8 @@ const CountryDropDown = ({ countries }) => {
                 ref={selectRef}
                 onChange={(e) => filterCountries(e)}
                 // onBlur={() => setShowList(false)} 
-                onFocus={() => setShowList(true)}/>
+                onFocus={() => setShowList(true)}
+                id="country"/>
         </CountryDropDownComponent>
     )
 }
