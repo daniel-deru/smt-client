@@ -19,7 +19,7 @@ const Product = ({product: p}) => {
 
   useEffect(async () => {
     if(Date.parse(p.expiry)){
-      let expiry = new Date(p.expiry).toLocaleString()
+      let expiry = new Date(p.expiry).toLocaleDateString()
       setProduct(prevProduct => ({...prevProduct, expiry}))
     }
     await getActiveUses()

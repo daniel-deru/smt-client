@@ -3,12 +3,16 @@ import { useState, useRef, useEffect } from "react"
 import { useNavigate } from "react-router"
 import axios from "axios"
 
+import CountryDropDown from "../../components/CountryDropDown"
+
 
 import { AccountPage } from "../../styled/Dashboard/Account.styled"
 
 
 const Account = () => {
   const navigate = useNavigate()
+
+  const [countries, setCountries] = useState([])
 
   const firstNameRef = useRef()
   const lastNameRef = useRef()
@@ -22,6 +26,8 @@ const Account = () => {
   const postalRef = useRef()
   const address1Ref = useRef()
   const address2Ref = useRef()
+
+  const countryListRef = useRef()
 
 
 
@@ -107,7 +113,7 @@ const Account = () => {
       contactEmailRef.current.value = user.contact_email
       contactNumberRef.current.value = user.contact_number
       companyNameRef.current.value = user.company_name
-      countryRef.current.value = user.country
+      // countryRef.current.innerText = user.country
       provinceRef.current.value = user.province
       cityRef.current.value = user.city
       postalRef.current.value = user.post_code
@@ -117,7 +123,32 @@ const Account = () => {
 
   }
 
+  const getCountries = async () => {
+    try {
+      const countries = await axios("https://restcountries.com/v3.1/all")
+      const filteredCountries = countries.data.map(country => {
+        return ({
+          name: country.name.common,
+          flag: country.flags.svg,
+          code: country.idd
+        })
+      })
+
+      filteredCountries.sort((a, b) => {
+        const fa = a.name.toLowerCase()
+        const fb = b.name.toLowerCase()
+
+        return fa < fb ? -1 : fa > fb ? 1 : 0
+      })
+      setCountries(filteredCountries)
+    } catch (e) {
+
+    }
+  }
+
+
   useEffect(async () => {
+    await getCountries()
     fillInFields()
   }, [user])
   return (
@@ -159,13 +190,13 @@ const Account = () => {
               </div>
 
               <div className='field-container'>
-                <label>Country</label>
-                <input type="text" ref={countryRef}/>
+                <label>Address Line 1</label>
+                <input type="text" ref={address1Ref} />
               </div>
 
               <div className='field-container'>
-                <label>State/Province</label>
-                <input type="text" ref={provinceRef}/>
+                <label>Address Line 2</label>
+                <input type="text" ref={address2Ref}/>
               </div>
 
               <div className='field-container'>
@@ -179,13 +210,13 @@ const Account = () => {
               </div>
 
               <div className='field-container'>
-                <label>Address Line 1</label>
-                <input type="text" ref={address1Ref}/>
+                <label>Country</label>
+                <CountryDropDown countries={countries}/>
               </div>
 
               <div className='field-container'>
-                <label>Address Line 2</label>
-                <input type="text" ref={address2Ref}/>
+                <label>State/Province</label>
+                <input type="text" ref={provinceRef}/>
               </div>
           </div>
           
