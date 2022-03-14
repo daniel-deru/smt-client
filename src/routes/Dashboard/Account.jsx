@@ -86,22 +86,22 @@ const Account = () => {
 
   const update = async () => {
     const updatedData = filterData()
-    // if(Object.keys(updatedData).length > 0){
-    //   console.log(Object.keys(updatedData))
-    //   try {
-    //     const request = await axios.post("http://localhost:8000/users/account/update", updatedData, {withCredentials: true})
-    //     const response = request.data
-    //     if(response.pass){
-    //       console.log(response)
-    //       window.location.reload(false)
-    //     }
-    //   } catch (e) {
-    //     if(e?.response?.status == 403){
-    //       navigate("/login")
-    //     }
-    //   }
+    if(Object.keys(updatedData).length > 0){
+      console.log(Object.keys(updatedData))
+      try {
+        const request = await axios.post("http://localhost:8000/users/account/update", updatedData, {withCredentials: true})
+        const response = request.data
+        if(response.pass){
+          console.log(response)
+          window.location.reload(false)
+        }
+      } catch (e) {
+        if(e?.response?.status == 403){
+          navigate("/login")
+        }
+      }
 
-    // }
+    }
     
   }
 

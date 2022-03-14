@@ -35,6 +35,8 @@ const Dashboard = () => {
       dispatch(setProducts(response.products))
       dispatch(login(response.user))
     } catch (e) {
+      console.log(e.response)
+      navigate("../login")
       if(e?.response?.status == 403){
         navigate("../login")
       }

@@ -21,7 +21,7 @@ const DialCodeDropDown = ({countries}) => {
         <DialDrop onClick={() => setShowCodes(!showCodes)} show={showCodes}>
             <div>
                 <FaAngleDown />
-                <span ref={displayCodeRef} id="dial-code">+27</span>
+                <span ref={displayCodeRef} id="dial-code">+00</span>
             </div>
             <ul className="drop-down">
                 {countries.map(country => (
