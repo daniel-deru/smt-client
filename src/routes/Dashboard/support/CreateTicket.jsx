@@ -71,7 +71,7 @@ const CreateTicket = () => {
     console.log(verified)
     if(verified){
       // Create ticket
-      const mail = await axios.post("http://localhost:8000/api/tickets/create", {name, email, subject, message})
+      const mail = await axios.post("http://localhost:8000/api/tickets/create", {name, email, subject, message}, { withCredentials: true })
       setSubmitSuccess(true)
     }
 
