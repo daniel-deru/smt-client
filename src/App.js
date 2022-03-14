@@ -18,6 +18,9 @@ import AppSumoLogin  from "./routes/AppSumo/Login";
 import Redeem from "./routes/AppSumo/Redeem";
 import Upgrade from "./routes/AppSumo/Upgrade";
 
+import CreateTicket from "./routes/Dashboard/support/CreateTicket";
+import Tickets from "./routes/Dashboard/support/Tickets";
+
 
 function App() {
 
@@ -47,7 +50,13 @@ function App() {
                 </Route>
 
                 <Route path="account" element={<Account />}/>
-                <Route path="support" element={<Support />}/>
+
+                <Route path="support">
+                  <Route path="" element={<Support/>}/>
+                  <Route path="tickets" element={<Tickets/>}/>
+                  <Route path="createticket" element={<CreateTicket/>}/>
+                </Route>
+
               </Route>
               
           </Routes>
