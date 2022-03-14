@@ -68,11 +68,10 @@ const CreateTicket = () => {
     const email = emailRef.current.value
     const subject = subjectRef.current.value
     const verified = await verify(name, email, subject, message)
-    console.log(verified)
     if(verified){
       // Create ticket
-      const mail = await axios.post("http://localhost:8000/api/tickets/create", {name, email, subject, message}, { withCredentials: true })
-      setSubmitSuccess(true)
+      const ticket = await axios.post("http://localhost:8000/api/tickets/create", {name, email, subject, message}, { withCredentials: true })
+      navigate(`../ticket?id=${ticket.data.ticket_id}`)
     }
 
 
@@ -114,16 +113,6 @@ const CreateTicket = () => {
           <button type="button"  onClick={() => submit()}>Send</button>
         </div>
       </form>}
-
-      {submitSuccess &&
-        <div className="submit-message">
-          <h1>Thank you</h1>
-          <p>Our team will contact you shortly</p>
-          <button onClick={() => setSubmitSuccess(false)}>Go Back</button>
-        </div>
-      
-      
-      }
     </CreateTicketForm>
   )
 }

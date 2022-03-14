@@ -1,9 +1,13 @@
+import axios from 'axios'
 import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router'
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 import { Login } from '../../styled/Admin/Login.styled'
 
 const AdminLogin = () => {
+
+    const navigate = useNavigate()
 
     const [error, setError] = useState("")
     const [passwordVisibility, setPasswordVisibility] = useState(false)
@@ -15,6 +19,23 @@ const AdminLogin = () => {
         setPasswordVisibility(!passwordVisibility)
         PasswordRef.current.type = passwordVisibility ? "password" : "text"
     
+    }
+
+    const submit = async () => {
+        if(EmailRef.current.value && PasswordRef.current.value){
+            try{
+                const loginRequest = await axios.post("http://localhost:8000/admin/login", {email: EmailRef.current.value, password: PasswordRef.current.value}, {withCredentials: true})
+                
+                if(loginRequest.data.pass){
+                    navigate("../dashboard", {state: "Login Successfull"})
+                }
+            } catch (e) {
+                if(e){
+                    console.log(e)
+                }
+            }
+
+        }
     }
 
 
@@ -41,7 +62,7 @@ const AdminLogin = () => {
                     
                 </div>
                 <div className="form-field">
-                    <button type='button'>Login</button>
+                    <button type='button' onClick={() => submit()}>Login</button>
                 </div>
 
             </form>

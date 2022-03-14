@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const CreateTicketForm = styled.div`
 font-size: 1.5em;
-
+text-align: center;
 .back{
     display: flex;
     justify-content: space-between;

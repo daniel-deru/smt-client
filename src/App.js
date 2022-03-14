@@ -20,9 +20,11 @@ import Upgrade from "./routes/AppSumo/Upgrade";
 
 import CreateTicket from "./routes/Dashboard/support/CreateTicket";
 import Tickets from "./routes/Dashboard/support/Tickets";
+import Ticket from "./routes/Dashboard/support/Ticket";
 
 import AdminLogin from "./routes/Admin/AdminLogin";
 import AdminDashboard from "./routes/Admin/AdminDashboard";
+import AdminTickets from "./routes/Admin/AdminTickets";
 
 
 function App() {
@@ -57,6 +59,7 @@ function App() {
                 <Route path="support">
                   <Route path="" element={<Support/>}/>
                   <Route path="tickets" element={<Tickets/>}/>
+                  <Route path="ticket" element={<Ticket />}/>
                   <Route path="createticket" element={<CreateTicket/>}/>
                 </Route>
 
@@ -65,7 +68,10 @@ function App() {
               <Route path="admin">
                   <Route path="" element={<Navigate to="dashboard"/>}/>
                   <Route path="login" element={<AdminLogin/>}/>
-                  <Route path="dashboard" element={<AdminDashboard/>}/>
+                  <Route path="dashboard" element={<AdminDashboard/>}>
+                    <Route path="" element={<Navigate to="tickets" />}/>
+                    <Route path="tickets" element={<AdminTickets />}/>
+                  </Route>
               </Route>
               
           </Routes>
