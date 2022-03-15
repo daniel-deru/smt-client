@@ -113,6 +113,14 @@ export const LoginPage = styled.main`
             }
         }
 
+    .forgot-password {
+        color: white;
+        text-align: center;
+        a {
+            color: ${({theme}) => theme.colors.green};
+        }
+    }
+
     .error-message {
         color: red;
         font-size: 0.75em;

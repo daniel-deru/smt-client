@@ -2,6 +2,8 @@ import { Route, Routes, Navigate } from "react-router-dom"
 
 import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
+import ForgotPassword from "./routes/ForgotPassword";
+import ResetPassword from "./routes/ResetPassword";
 
 
 import Dashboard from "./routes/Dashboard";
@@ -35,6 +37,8 @@ function App() {
           <Routes>
             {/* Temporary redirect */}
               <Route path="/" element={<Navigate to="dashboard" />}/>
+              <Route path="forgot-password" element={<ForgotPassword />}/>
+              <Route path="resetpassword" element={<ResetPassword />}/>
 
               <Route path="/appsumo">
                 <Route path="" element={<Navigate to="redeem" />} />

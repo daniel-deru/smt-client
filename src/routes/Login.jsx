@@ -5,6 +5,7 @@ import axios from "axios"
 import { useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
 import { login } from "../store/user"
+import { Link } from "react-router-dom"
 
  
 
@@ -90,6 +91,10 @@ const Login = () => {
                     </div>
 
                 </form>
+                <div className="forgot-password">
+                    Forgot Password?  
+                    <Link to={"../forgot-password"}> Click Here</Link>
+                </div>
                 <div className="error">{error}</div>
             
         </LoginPage>
