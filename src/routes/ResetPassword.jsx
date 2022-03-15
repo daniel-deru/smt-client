@@ -1,10 +1,14 @@
 import { useSearchParams } from "react-router-dom"
 import { useEffect, useState, useRef } from "react"
+import { useNavigate } from "react-router"
+import axios from "axios"
 import { FaEye, FaEyeSlash} from "react-icons/fa"
 
 import { ResetPasswordPage } from "../styled/ResetPassword.styled"
 
 const ResetPassword = () => {
+
+    const navigate = useNavigate()
 
     const [password1Visible, setPassword1Visible] = useState(false)
     const [password2Visible, setPassword2Visible] = useState(false)
@@ -12,7 +16,7 @@ const ResetPassword = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
 
-    const id = searchParams.get("id")
+    
 
     const password1Ref = useRef()
     const password2Ref = useRef()
@@ -76,13 +80,28 @@ const ResetPassword = () => {
         }
     }
 
-    const submit = () => {
+    const submit = async () => {
         const password1 = password1Ref.current.value
         const password2 = password2Ref.current.value
         const validPasswords = verify(password1, password2)
+        const id = searchParams.get("id")
 
         if(validPasswords){
-            // Submit the data for review
+            
+            try {
+                const requestReset = await axios.post("http://localhost:8000/users/resetpassword", {id, password: password1 })
+                console.log(requestReset.data)
+                if(requestReset.data.pass){
+                    
+                    navigate("../login")
+                } 
+            } catch (err){
+                if(err) {
+                    console.error(err)
+                    // console.log(err)
+                    setErrors("Something went wrong, please contact support.")
+                }
+            }
         }
     }
 
