@@ -31,7 +31,7 @@ const Dashboard = () => {
     try {
       const request = await axios.post("http://localhost:8000/users/account/get", null, {withCredentials: true})
       const response = request.data
-      console.log(response)
+      console.log("This is the response from the dashboard request", response)
       dispatch(setProducts(response.products))
       dispatch(login(response.user))
     } catch (e) {

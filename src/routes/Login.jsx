@@ -49,6 +49,7 @@ const Login = () => {
                     email: response.email,
                     }
                 ))
+            console.log(response)
             navigate("/dashboard")
             }
         } catch (e) {

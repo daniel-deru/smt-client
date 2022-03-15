@@ -39,7 +39,7 @@ const AdminTickets = () => {
         </div>
         <ul>
           {tickets && tickets.map((ticket, index) => (
-            <li key={ticket.id} onClick={() => null}>
+            <li key={ticket.id} onClick={() => navigate("../ticket", {state: ticket.id})}>
               <div>{index+1}</div>
               <div>{ticket.first_name} {ticket.last_name}</div>
               <div>{ticket.email}</div>
