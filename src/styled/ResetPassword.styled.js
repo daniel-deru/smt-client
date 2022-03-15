@@ -10,27 +10,45 @@ export const ResetPasswordPage = styled.div`
     form {
         width: 40vw;
         margin: auto;
-        div {
+        > div {
             display: flex;
             flex-direction: column;
             margin: 2rem 0px;
             label {
                 text-align: left;
                 margin-bottom: 1rem;
+                user-select: none;
             }
-            input {
-                font-size: 1em;
-                padding: 5px;
-                border-radius: 5px;
-                outline: none;
-                border: 2px solid ${({theme}) => theme.colors.lightBlue};
-                background-color: transparent;
-                color: white;
+            div {
+                position: relative;
+                display: flex;
+                input {
+                    font-size: 1em;
+                    padding: 5px;
+                    border-radius: 5px;
+                    outline: none;
+                    border: 2px solid ${({theme}) => theme.colors.lightBlue};
+                    background-color: transparent;
+                    color: white;
+                    width: 100%;
 
-                &:focus {
-                    border: 2px solid ${({theme}) => theme.colors.green};
+                    &:focus {
+                        border: 2px solid ${({theme}) => theme.colors.green};
+                    }
+                }
+                span {
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    position: absolute;
+                    width: fit-content;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
+            
 
             button {
                 font-size: 1em;
@@ -39,6 +57,7 @@ export const ResetPasswordPage = styled.div`
                 border-radius: 5px;
                 color: white;
                 cursor: pointer;
+                user-select: none;
 
                 &:active {
                     background-color: transparent;
