@@ -1,10 +1,9 @@
-import { useEffect, useState, useRef } from "react"
+import { useState, useRef } from "react"
 import { FaAngleDown } from "react-icons/fa"
 import { DialDrop } from "../styled/Components/DialCodeDropDown.styled"
 
 
 const DialCodeDropDown = ({countries}) => {
-    const [dialCountries, setDialCountries] = useState()
     const [showCodes, setShowCodes] = useState(false)
 
     const displayCodeRef = useRef()

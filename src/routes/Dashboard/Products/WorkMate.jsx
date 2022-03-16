@@ -8,7 +8,6 @@ import { WorkMatePage } from "../../../styled/Products/WorkMate.styled"
 const WorkMate = () => {
   const emailRef = useRef()
   const [emailList, setEmailList] = useState([])
-  const [error, setError] = useState()
 
   const navigate = useNavigate()
 
@@ -17,7 +16,7 @@ const WorkMate = () => {
     const date = new Date(Date.now()).toLocaleDateString()
 
     if(email){
-      const itemExists = emailList.filter(emailItem => emailItem.email == email)
+      emailList.filter(emailItem => emailItem.email === email)
       // if(!itemExists){
         setEmailList(prevList => ([...prevList, {email, date}]))
         emailRef.current.value = ""

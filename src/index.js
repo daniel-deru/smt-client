@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
 import { ThemeProvider } from 'styled-components';
 import { Provider } from "react-redux"
@@ -29,6 +28,8 @@ let theme = {
         case "darkBlue":
             themeColor = this.darkBlue
             break
+        default:
+          themeColor = "#9ecd16"
       }
 
       return themeColor + opacity

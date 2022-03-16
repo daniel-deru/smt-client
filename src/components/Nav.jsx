@@ -1,7 +1,6 @@
-import { Link, useLocation, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { NavComponent } from "../styled/Nav.styled"
 import { useSelector } from "react-redux"
-import { useEffect } from "react"
 
 
 const Nav = () => {

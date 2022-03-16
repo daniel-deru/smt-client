@@ -3,8 +3,6 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import axios from "axios"
 
-import { setProducts } from "../store/products"
-
 import { ProductComponent } from "../styled/Product.styled"
 
 const Product = ({product: p}) => {
@@ -12,7 +10,6 @@ const Product = ({product: p}) => {
 
 
   const navigate = useNavigate()
-  const { products } = useSelector(state => state.products)
 
   const [product, setProduct] = useState(p)
   const [activations, setActivations] = useState(1)

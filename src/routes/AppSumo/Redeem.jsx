@@ -36,7 +36,7 @@ const Redeem = () => {
     // Regex for testing
     let firstNameRegEx = /^[a-zA-Z\s]*$/gi
     let lastNameRegEx = /^[a-zA-Z\s]*$/gi
-    let emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    let emailRegEx = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
     
     // clear previous errors
     setErrors([])
@@ -75,7 +75,7 @@ const Redeem = () => {
       setErrors(errorArray)
 
     }
-    if(code && errorArray.length == 0){
+    if(code && errorArray.length === 0){
 
       let validCode = await axios.post("http://localhost:8000/api/verify/appsumoCode", {code})
       let pass = validCode.data.pass
@@ -85,7 +85,7 @@ const Redeem = () => {
         setErrors(errorArray)
         return false
 
-      } else if(pass && errorArray.length == 0){
+      } else if(pass && errorArray.length === 0){
           return true
       }
      
@@ -114,7 +114,7 @@ const Redeem = () => {
           setUser(data.user_id)
         }
       } catch (e){
-        if(e?.response?.status == 301){
+        if(e?.response?.status === 301){
           navigate("../login")
         }
       }

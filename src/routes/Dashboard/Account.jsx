@@ -20,16 +20,12 @@ const Account = () => {
   const displayNameRef = useRef()
   const contactEmailRef = useRef()
   const contactNumberRef = useRef()
-  const dialCodeRef = useRef()
   const companyNameRef = useRef()
-  const countryRef = useRef()
   const provinceRef = useRef()
   const cityRef = useRef()
   const postalRef = useRef()
   const address1Ref = useRef()
   const address2Ref = useRef()
-
-  const countryListRef = useRef()
 
 
 
@@ -69,7 +65,7 @@ const Account = () => {
     // Check if the data is different from the user in state
     // console.log(user)
     let filledInData = Object.entries(info).filter((item) => {
-      if(item[1] && user[item[0]] != item[1]){
+      if(item[1] && user[item[0]] !== item[1]){
         return true
       }
       else return false
@@ -96,7 +92,7 @@ const Account = () => {
           window.location.reload(false)
         }
       } catch (e) {
-        if(e?.response?.status == 403){
+        if(e?.response?.status === 403){
           navigate("/login")
         }
       }

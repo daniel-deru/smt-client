@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useNavigate } from "react-router"
 
 import Product from "../../components/Product"
@@ -11,9 +11,6 @@ const Products = () => {
   const { products } = useSelector(state => state.products)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log(products)
-  }, [])
   return (
     <ProductsPage>
 

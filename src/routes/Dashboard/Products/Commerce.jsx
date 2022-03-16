@@ -27,7 +27,7 @@ const Commerce = () => {
 
     const commerceProduct = getProduct()
 
-    const inList = websiteList.filter(item => item.website == website)
+    const inList = websiteList.filter(item => item.website === website)
 
     if(!website) return setError("Please enter a website")
     else if (commerceProduct.uses <= websiteList.length) return setError("Your account does not allow anymore installations.")
@@ -64,11 +64,11 @@ const Commerce = () => {
   }
 
   const deleteWebsite = async (item) => {
-    const remainingWebsites = websiteList.filter(account => item.website != account.website)
+    const remainingWebsites = websiteList.filter(account => item.website !== account.website)
     setWebsiteList(remainingWebsites)
 
     try {
-      const request = await axios.post("http://localhost:8000/api/commerce/websites?action=delete", {website: item.website}, { withCredentials: true })
+      await axios.post("http://localhost:8000/api/commerce/websites?action=delete", {website: item.website}, { withCredentials: true })
       setError("")
     } catch (e) {
       console.log(e)
@@ -76,7 +76,7 @@ const Commerce = () => {
   }
 
   const getProduct = () => {
-    return products.filter(product => product.name == "Commerce")[0]
+    return products.filter(product => product.name === "Commerce")[0]
   }
 
   useEffect(async () => {

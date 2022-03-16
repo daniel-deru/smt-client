@@ -1,10 +1,6 @@
 import { SupportPage } from "../../styled/Dashboard/Support.styled"
-import { useNavigate } from "react-router"
-
 
 const Support = () => {
-
-  const navigate = useNavigate()
 
   return (
     <SupportPage>

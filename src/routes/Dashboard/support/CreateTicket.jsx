@@ -22,7 +22,7 @@ const CreateTicket = () => {
   const navigate = useNavigate()
 
   const verify = async (name, email, subject, message) => {
-    const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    const emailRegEx = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
     let errorMessage = ""
     switch(true){
       case !name:
@@ -40,6 +40,8 @@ const CreateTicket = () => {
       case !message:
         errorMessage = "Please provide a message"
         break
+      default:
+        errorMessage = "An error occured"
     }
     setError(errorMessage)
 
@@ -54,7 +56,7 @@ const CreateTicket = () => {
         return false
       } catch (e) {
           setError(e.response.data.message)
-          if(e.response.status == 403){
+          if(e.response.status === 403){
             navigate("/login")
           }
       }
