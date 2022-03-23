@@ -1,10 +1,11 @@
 import { useState, useRef } from "react"
 import { useNavigate } from "react-router"
-import axios from "axios"
+// import axios from "axios"
 import { IoMdArrowBack } from "react-icons/io"
 
 
 import { CreateTicketForm } from "../../../styled/Support/createTicket.styled"
+import axios from "../../../config/axios"
 
 const CreateTicket = () => {
     
@@ -47,7 +48,7 @@ const CreateTicket = () => {
 
     if(!errorMessage){
       try {
-        const request = await axios.post("https://api.smartmetatec.com/api/verify/email", {email: email}, {withCredentials: true})
+        const request = await axios.post("api/verify/email", {email: email}, {withCredentials: true})
         const response = request.data
         if(response.pass){
           setError("")
@@ -72,7 +73,7 @@ const CreateTicket = () => {
     const verified = await verify(name, email, subject, message)
     if(verified){
       // Create ticket
-      const ticket = await axios.post("https://api.smartmetatec.com/api/tickets/create", {name, email, subject, message}, { withCredentials: true })
+      const ticket = await axios.post("api/tickets/create", {name, email, subject, message}, { withCredentials: true })
       navigate(`../ticket?id=${ticket.data.ticket_id}`)
     }
 

@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
-import axios from 'axios'
+// import axios from 'axios'
 
 
 import { HeaderComponent } from '../styled/Header.styled'
+import axios from '../config/axios'
 
 const Header = () => {
   const navigate = useNavigate()
   const logout = () => {
     try{
-      const request = axios.post("/users/logout", {}, {withCredentials: true})
+      const request = axios.post("/users/logout", {})
       if(request.data.pass){
         navigate("/login")
       }

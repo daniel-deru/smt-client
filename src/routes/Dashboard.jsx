@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router'
-import axios from 'axios'
+// import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Header from '../components/Header'
@@ -9,6 +9,8 @@ import { Main, DashboardPage, DashboardNestedRoutes } from '../styled/Dashboard.
 import { Loading } from '../styled/Loading.styled'
 import { login } from '../store/user'
 import { setProducts } from "../store/products"
+import axios from '../config/axios'
+
 
 
 
@@ -32,7 +34,7 @@ const Dashboard = () => {
       console.log("This is before the navigate")
       navigate("../login")
       console.log("This is after the navigate")
-      const request = await axios.post("/users/account/get", null, {withCredentials: true})
+      const request = await axios.post("users/account/get", null)
       const response = request.data
       if(response.data){
         console.log("This is the response from the dashboard request", response)

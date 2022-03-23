@@ -1,7 +1,9 @@
 import { useState, useRef } from "react"
 import { useNavigate } from "react-router"
-import axios from "axios"
+// import axios from "axios"
+
 import { ForgotPage } from "../styled/ForgotPassword.styled"
+import axios from "../config/axios"
 
 const ForgotPassword = () => {
 
@@ -16,7 +18,7 @@ const ForgotPassword = () => {
 
         setError("")
         if(!emailRegEx.test(emailRef.current.value)) return setError("Please enter a valid email address")
-        axios.post("/users/forgotpassword", {email: emailRef.current.value}, {withCredentials: true})
+        axios.post("/users/forgotpassword", {email: emailRef.current.value})
         setSubmitted(true)
 
     }

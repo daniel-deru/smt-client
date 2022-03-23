@@ -1,10 +1,11 @@
 import { useSearchParams } from "react-router-dom"
 import { useEffect, useState, useRef } from "react"
 import { useNavigate } from "react-router"
-import axios from "axios"
+// import axios from "axios"
 import { FaEye, FaEyeSlash} from "react-icons/fa"
 
 import { ResetPasswordPage } from "../styled/ResetPassword.styled"
+import axios from "../config/axios"
 
 const ResetPassword = () => {
 
@@ -89,7 +90,7 @@ const ResetPassword = () => {
         if(validPasswords){
             
             try {
-                const requestReset = await axios.post("https://api.smartmetatec.com/users/resetpassword", {id, password: password1 })
+                const requestReset = await axios.post("users/resetpassword", {id, password: password1 })
                 console.log(requestReset.data)
                 if(requestReset.data.pass){
                     

@@ -1,13 +1,14 @@
 import { useRef, useState } from "react"
-import { LoginPage } from "../../styled/Login.styled"
 import {FaEyeSlash, FaEye} from "react-icons/fa"
-import axios from "axios"
+// import axios from "axios"
 import { useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
+
+
 import { login } from "../../store/user"
 import { setProducts } from "../../store/products"
-
- 
+import { LoginPage } from "../../styled/Login.styled"
+import axios from "../../config/axios"
 
 
 
@@ -34,18 +35,12 @@ const AppSumoLogin = () => {
             email: EmailRef.current.value,
             password: PasswordRef.current.value
         }
-        const headers = {
-            'Access-Control-Allow-Credentials': true,
-            'content-type': "application/json",
-            'accept': 'application/json',
-            withCredentials: true
-        }
         try {
-            const login_request = await axios.post("https://api.smartmetatec.com/users/login", payload, headers)
+            const login_request = await axios.post("users/login", payload)
             const response = login_request.data
             if(response.pass){
                 try {
-                    const request = await axios.post("https://api.smartmetatec.com/users/account/get", null, { withCredentials: true })
+                    const request = await axios.post("users/account/get", null)
                     if(request.data){
                         dispatch(login(request.data.user))
                         dispatch(setProducts(request.data.products))

@@ -3,10 +3,11 @@ import { useNavigate } from "react-router"
 import { useSelector } from "react-redux"
 
 import { IoMdArrowBack } from "react-icons/io"
-import axios from "axios"
+// import axios from "axios"
 
 
 import { CommercePage } from "../../../styled/Products/Commerce.styled"
+import axios from "../../../config/axios"
 
 import Website from "../../../components/Products/Commerce/Website"
 
@@ -34,7 +35,7 @@ const Commerce = () => {
     else if(inList.length > 0) return setError("This website has already been added")
     else if(!validWebsite(website)) return setError("The website you entered is not valid.")
     else {
-      const request = await axios.post("https://api.smartmetatec.com/api/commerce/websites?action=add", {website, date}, { withCredentials: true })
+      const request = await axios.post("api/commerce/websites?action=add", {website, date})
       if(request.data.pass){
 
         setWebsiteList(prevList => ([...prevList, {website, date}]))
@@ -54,7 +55,7 @@ const Commerce = () => {
 
   const getwebsites = async () => {
     try {
-      const request = await axios.post("https://api.smartmetatec.com/api/commerce/websites?action=get", {}, { withCredentials: true })
+      const request = await axios.post("api/commerce/websites?action=get", {})
       if(request.data.pass){
         setWebsiteList(request.data.accounts)
       }
@@ -68,7 +69,7 @@ const Commerce = () => {
     setWebsiteList(remainingWebsites)
 
     try {
-      await axios.post("https://api.smartmetatec.com/api/commerce/websites?action=delete", {website: item.website}, { withCredentials: true })
+      await axios.post("api/commerce/websites?action=delete", {website: item.website})
       setError("")
     } catch (e) {
       console.log(e)

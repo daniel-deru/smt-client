@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import axios from "axios"
+// import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router"
 
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router"
 import { UpgradePage } from "../../styled/AppSumo/Upgrade.styled"
 import { setProducts } from "../../store/products"
 import { login } from "../../store/user"
+import axios from "../../config/axios"
 
 const Upgrade = () => {
 
@@ -21,7 +22,7 @@ const Upgrade = () => {
     const claim = async () => {
         try {
             if(codeRef.current.value){
-                const request = await axios.post("https://api.smartmetatec.com/api/appsumo/upgrade", {appSumoCode: codeRef.current.value}, { withCredentials: true })
+                const request = await axios.post("api/appsumo/upgrade", {appSumoCode: codeRef.current.value})
                 if(request.data){
                     console.log(request.data)
                     navigate("../../dashboard")
@@ -35,7 +36,7 @@ const Upgrade = () => {
 
     useEffect(async () => {
         try {
-            const request = await axios.post("https://api.smartmetatec.com/users/account/get", null, { withCredentials: true })
+            const request = await axios.post("users/account/get", null)
             if(request){
                 dispatch(login(request.data.user))
                 dispatch(setProducts(request.data.products))

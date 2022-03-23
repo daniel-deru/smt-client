@@ -1,10 +1,11 @@
-import axios from "axios"
+// import axios from "axios"
 import { useRef, useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router"
 
 // import { AppSumoPage } from '../../styled/AppSumo.styled'
 import { RedeemPage } from "../../styled/AppSumo/Redeem.styled"
+import axios from "../../config/axios"
 
 const Redeem = () => {
   // Indexes for the errors
@@ -77,7 +78,7 @@ const Redeem = () => {
     }
     if(code && errorArray.length === 0){
 
-      let validCode = await axios.post("https://api.smartmetatec.com/api/verify/appsumoCode", {code})
+      let validCode = await axios.post("api/verify/appsumoCode", {code})
       let pass = validCode.data.pass
 
       if(!pass){
@@ -106,7 +107,7 @@ const Redeem = () => {
     console.log("This is the valid data verification", validData)
     if(validData){
       try {
-        const check = await axios.post("https://api.smartmetatec.com/api/appsumo/redeem", payload)
+        const check = await axios.post("api/appsumo/redeem", payload)
         const data = check.data
         console.log("This is the return data from the server after the user is created.", data)
         if(data.pass){
@@ -124,7 +125,7 @@ const Redeem = () => {
   }
 
   const Resend = async () => {
-    let req = await axios.post("https://api.smartmetatec.com/api/mail/signUp", {userId: user})
+    let req = await axios.post("api/mail/signUp", {userId: user})
     console.log(req.data)
   }
 

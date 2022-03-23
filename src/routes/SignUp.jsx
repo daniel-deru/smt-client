@@ -1,8 +1,10 @@
 import { useRef, useState, useEffect } from "react"
 import { SignUpPage } from "../styled/SignUp.styled"
-import axios from "axios"
+// import axios from "axios"
 import { useSearchParams, useNavigate } from "react-router-dom"
 import {FaEye, FaEyeSlash} from "react-icons/fa"
+
+import axios from "../config/axios"
 
 
 const SignUp = () => {
@@ -33,7 +35,7 @@ const SignUp = () => {
         let goodInfo = verify(payload)
         if(goodInfo){
             console.log("good to send")
-            const createAccount = await axios.post("https://api.smartmetatec.com/users/signup", payload)
+            const createAccount = await axios.post("users/signup", payload)
             let response = createAccount.data
             if(response.pass){
                 navigate("/login")
@@ -91,7 +93,7 @@ const SignUp = () => {
 
     const verifyUser = async () => {
         console.log(searchParams.get("id"))
-        let verified = await axios.get("https://api.smartmetatec.com/api/verify/email?email="+searchParams.get("id"))
+        let verified = await axios.get("api/verify/email?email="+searchParams.get("id"))
         let result = verified.data
         if(result.pass){
             EmailRef.current.value = result.email

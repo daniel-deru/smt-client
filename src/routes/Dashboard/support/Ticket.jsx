@@ -1,6 +1,8 @@
-import axios from 'axios'
+// import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+
+import axios from '../../../config/axios'
 
 const Ticket = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -11,7 +13,7 @@ const Ticket = () => {
 
     const getTicket = async () => {
         try{
-            const ticketRequest = await axios.post("https://api.smartmetatec.com/api/tickets/getticket", {id})
+            const ticketRequest = await axios.post("api/tickets/getticket", {id})
             if(ticketRequest.data.pass){
 
             }

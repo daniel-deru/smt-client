@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import axios from "axios"
+// import axios from "axios"
 
 import { ProductComponent } from "../styled/Product.styled"
+import axios from "../config/axios"
 
 const Product = ({product: p}) => {
 
@@ -31,7 +31,7 @@ const Product = ({product: p}) => {
 
   const getActiveUses = async () => {
     try {
-      const request = await axios.post(`https://api.smartmetatec.com/api/${product.name.toLowerCase()}/websites?action=get`, {}, { withCredentials: true })
+      const request = await axios.post(`api/${product.name.toLowerCase()}/websites?action=get`, {})
       if(request.data.pass){
         setActivations(request.data.accounts.length)
       }

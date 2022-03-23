@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux"
 import { useState, useRef, useEffect } from "react"
 import { useNavigate } from "react-router"
-import axios from "axios"
+// import axios from "axios"
 
 import CountryDropDown from "../../components/CountryDropDown"
 import DialCodeDropDown from "../../components/DialCodeDropDown"
-
+import axios from "../../config/axios"
 
 import { AccountPage } from "../../styled/Dashboard/Account.styled"
 
@@ -85,7 +85,7 @@ const Account = () => {
     if(Object.keys(updatedData).length > 0){
       console.log(Object.keys(updatedData))
       try {
-        const request = await axios.post("https://api.smartmetatec.com/users/account/update", updatedData, {withCredentials: true})
+        const request = await axios.post("users/account/update", updatedData)
         const response = request.data
         if(response.pass){
           console.log(response)
