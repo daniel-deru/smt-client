@@ -29,17 +29,22 @@ const Dashboard = () => {
   // user products
   const getUser = async () => {
     try {
-      const request = await axios.post("http://localhost:8000/users/account/get", null, {withCredentials: true})
-      const response = request.data
-      console.log("This is the response from the dashboard request", response)
-      dispatch(setProducts(response.products))
-      dispatch(login(response.user))
+      console.log("This is before the navigate")
+      navigate("../login")
+      console.log("This is after the navigate")
+      // const request = await axios.post("/users/account/get", null, {withCredentials: true})
+      // const response = request.data
+      // if(response.data){
+      //   console.log("This is the response from the dashboard request", response)
+      //   dispatch(setProducts(response.products))
+      //   dispatch(login(response.user))
+      // }
     } catch (e) {
       console.log(e.response)
       navigate("../login")
-      if(e?.response?.status == 403){
-        navigate("../login")
-      }
+      // if(e?.response?.status == 403){
+      //   navigate("../login")
+      // }
     } 
   }
   useEffect(async () => {

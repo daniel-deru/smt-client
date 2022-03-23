@@ -33,7 +33,7 @@ const SignUp = () => {
         let goodInfo = verify(payload)
         if(goodInfo){
             console.log("good to send")
-            const createAccount = await axios.post("http://localhost:8000/users/signup", payload)
+            const createAccount = await axios.post("https://api.smartmetatec.com/users/signup", payload)
             let response = createAccount.data
             if(response.pass){
                 navigate("/login")
@@ -91,7 +91,7 @@ const SignUp = () => {
 
     const verifyUser = async () => {
         console.log(searchParams.get("id"))
-        let verified = await axios.get("http://localhost:8000/api/verify/email?email="+searchParams.get("id"))
+        let verified = await axios.get("https://api.smartmetatec.com/api/verify/email?email="+searchParams.get("id"))
         let result = verified.data
         if(result.pass){
             EmailRef.current.value = result.email

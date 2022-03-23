@@ -24,7 +24,7 @@ const AdminLogin = () => {
     const submit = async () => {
         if(EmailRef.current.value && PasswordRef.current.value){
             try{
-                const loginRequest = await axios.post("http://localhost:8000/admin/login", {email: EmailRef.current.value, password: PasswordRef.current.value}, {withCredentials: true})
+                const loginRequest = await axios.post("https://api.smartmetatec.com/admin/login", {email: EmailRef.current.value, password: PasswordRef.current.value}, {withCredentials: true})
                 
                 if(loginRequest.data.pass){
                     navigate("../dashboard", {state: "Login Successfull"})

@@ -47,7 +47,7 @@ const CreateTicket = () => {
 
     if(!errorMessage){
       try {
-        const request = await axios.post("http://localhost:8000/api/verify/email", {email: email}, {withCredentials: true})
+        const request = await axios.post("https://api.smartmetatec.com/api/verify/email", {email: email}, {withCredentials: true})
         const response = request.data
         if(response.pass){
           setError("")
@@ -72,7 +72,7 @@ const CreateTicket = () => {
     const verified = await verify(name, email, subject, message)
     if(verified){
       // Create ticket
-      const ticket = await axios.post("http://localhost:8000/api/tickets/create", {name, email, subject, message}, { withCredentials: true })
+      const ticket = await axios.post("https://api.smartmetatec.com/api/tickets/create", {name, email, subject, message}, { withCredentials: true })
       navigate(`../ticket?id=${ticket.data.ticket_id}`)
     }
 

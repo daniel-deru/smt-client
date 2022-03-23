@@ -26,12 +26,12 @@ const Product = ({product: p}) => {
   
 
   const downloadProduct = () => {
-    window.location.assign(`http://localhost:8000/users/downloadproduct?id=${product.product_id}`)
+    window.location.assign(`/users/downloadproduct?id=${product.product_id}`)
   }
 
   const getActiveUses = async () => {
     try {
-      const request = await axios.post(`http://localhost:8000/api/${product.name.toLowerCase()}/websites?action=get`, {}, { withCredentials: true })
+      const request = await axios.post(`https://api.smartmetatec.com/api/${product.name.toLowerCase()}/websites?action=get`, {}, { withCredentials: true })
       if(request.data.pass){
         setActivations(request.data.accounts.length)
       }

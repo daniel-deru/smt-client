@@ -16,7 +16,7 @@ const ForgotPassword = () => {
 
         setError("")
         if(!emailRegEx.test(emailRef.current.value)) return setError("Please enter a valid email address")
-        axios.post("http://localhost:8000/users/forgotpassword", {email: emailRef.current.value}, {withCredentials: true})
+        axios.post("/users/forgotpassword", {email: emailRef.current.value}, {withCredentials: true})
         setSubmitted(true)
 
     }

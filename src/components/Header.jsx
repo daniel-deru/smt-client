@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate()
   const logout = () => {
     try{
-      const request = axios.post("http://localhost:8000/users/logout", {}, {withCredentials: true})
+      const request = axios.post("/users/logout", {}, {withCredentials: true})
       if(request.data.pass){
         navigate("/login")
       }

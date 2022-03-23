@@ -11,7 +11,7 @@ const AdminDashboard = () => {
 
   const getAdmin = async () => {
     try {
-      const admin = await axios("http://localhost:8000/admin/get", {withCredentials:true})
+      const admin = await axios("https://api.smartmetatec.com/admin/get", {withCredentials:true})
       console.log("This is the request to see if the admin is logged in", admin.data)
       if(!admin?.data?.pass) navigate("../login")
 

@@ -41,7 +41,7 @@ const Login = () => {
             withCredentials: true
         }
         try {
-            const login_request = await axios.post("http://localhost:8000/users/login", payload, headers)
+            const login_request = await axios.post("https://api.smartmetatec.com/users/login", payload, headers)
             const response = login_request.data
             if(response.pass){
                 dispatch(login(

@@ -85,7 +85,7 @@ const Account = () => {
     if(Object.keys(updatedData).length > 0){
       console.log(Object.keys(updatedData))
       try {
-        const request = await axios.post("http://localhost:8000/users/account/update", updatedData, {withCredentials: true})
+        const request = await axios.post("https://api.smartmetatec.com/users/account/update", updatedData, {withCredentials: true})
         const response = request.data
         if(response.pass){
           console.log(response)

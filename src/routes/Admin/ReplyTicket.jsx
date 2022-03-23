@@ -7,7 +7,7 @@ const ReplyTicket = () => {
 
     const getTicket = async () => {
         try {
-            const requestTicket = await axios.post("http://localhost:8000/admin/getticket", {id: state}, {withCredentials: true})
+            const requestTicket = await axios.post("https://api.smartmetatec.com/admin/getticket", {id: state}, {withCredentials: true})
             console.log(requestTicket.data)
         } catch (e){
 

@@ -41,11 +41,11 @@ const AppSumoLogin = () => {
             withCredentials: true
         }
         try {
-            const login_request = await axios.post("http://localhost:8000/users/login", payload, headers)
+            const login_request = await axios.post("https://api.smartmetatec.com/users/login", payload, headers)
             const response = login_request.data
             if(response.pass){
                 try {
-                    const request = await axios.post("http://localhost:8000/users/account/get", null, { withCredentials: true })
+                    const request = await axios.post("https://api.smartmetatec.com/users/account/get", null, { withCredentials: true })
                     if(request.data){
                         dispatch(login(request.data.user))
                         dispatch(setProducts(request.data.products))

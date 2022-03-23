@@ -89,7 +89,7 @@ const ResetPassword = () => {
         if(validPasswords){
             
             try {
-                const requestReset = await axios.post("http://localhost:8000/users/resetpassword", {id, password: password1 })
+                const requestReset = await axios.post("https://api.smartmetatec.com/users/resetpassword", {id, password: password1 })
                 console.log(requestReset.data)
                 if(requestReset.data.pass){
                     

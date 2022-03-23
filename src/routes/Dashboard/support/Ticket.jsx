@@ -11,7 +11,7 @@ const Ticket = () => {
 
     const getTicket = async () => {
         try{
-            const ticketRequest = await axios.post("http://localhost:8000/api/tickets/getticket", {id})
+            const ticketRequest = await axios.post("https://api.smartmetatec.com/api/tickets/getticket", {id})
             if(ticketRequest.data.pass){
 
             }

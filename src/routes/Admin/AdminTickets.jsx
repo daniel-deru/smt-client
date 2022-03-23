@@ -12,7 +12,7 @@ const AdminTickets = () => {
 
   const getTickets = async () => {
     try {
-      const requestTickets = await axios("http://localhost:8000/admin/gettickets", {withCredentials: true})
+      const requestTickets = await axios("https://api.smartmetatec.com/admin/gettickets", {withCredentials: true})
       if(!requestTickets.data.tickets) setTickets(null)
       console.log(requestTickets.data)
       setTickets(requestTickets.data.tickets)
