@@ -37,7 +37,7 @@ const Login = () => {
             password: PasswordRef.current.value
         }
         try {
-            const login_request = await axios.post("users/login", payload)
+            const login_request = await axios.post("users/login", payload, {withCredentials: true})
             const response = login_request.data
             if(response.pass){
                 dispatch(login(

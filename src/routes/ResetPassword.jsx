@@ -90,7 +90,7 @@ const ResetPassword = () => {
         if(validPasswords){
             
             try {
-                const requestReset = await axios.post("users/resetpassword", {id, password: password1 })
+                const requestReset = await axios.post("users/resetpassword", {id, password: password1 }, {withCredentials: true})
                 console.log(requestReset.data)
                 if(requestReset.data.pass){
                     

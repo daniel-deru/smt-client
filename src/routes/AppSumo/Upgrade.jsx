@@ -22,7 +22,7 @@ const Upgrade = () => {
     const claim = async () => {
         try {
             if(codeRef.current.value){
-                const request = await axios.post("api/appsumo/upgrade", {appSumoCode: codeRef.current.value})
+                const request = await axios.post("api/appsumo/upgrade", {appSumoCode: codeRef.current.value}, {withCredentials: true})
                 if(request.data){
                     console.log(request.data)
                     navigate("../../dashboard")
@@ -36,7 +36,7 @@ const Upgrade = () => {
 
     useEffect(async () => {
         try {
-            const request = await axios.post("users/account/get", null)
+            const request = await axios.post("users/account/get", null, {withCredentials: true})
             if(request){
                 dispatch(login(request.data.user))
                 dispatch(setProducts(request.data.products))

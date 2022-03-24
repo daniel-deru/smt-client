@@ -34,7 +34,7 @@ const Dashboard = () => {
       // console.log("This is before the navigate")
       // navigate("../login")
       // console.log("This is after the navigate")
-      const request = await axios.post("users/account/get", null)
+      const request = await axios.post("users/account/get", null, {withCredentials: true})
       const response = request.data
       if(response.data){
         console.log("This is the response from the dashboard request", response)
