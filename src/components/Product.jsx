@@ -26,7 +26,7 @@ const Product = ({product: p}) => {
   
 
   const downloadProduct = () => {
-    window.location.assign(`/users/downloadproduct?id=${product.product_id}`)
+    window.location.assign(`https://api.smartmetatec.com/users/downloadproduct?id=${product.product_id}`)
   }
 
   const getActiveUses = async () => {

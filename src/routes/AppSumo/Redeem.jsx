@@ -110,6 +110,7 @@ const Redeem = () => {
         const check = await axios.post("api/appsumo/redeem", payload)
         const data = check.data
         console.log("This is the return data from the server after the user is created.", data)
+        console.log(check)
         if(data.pass){
           setSubmitSuccess(true)
           setUser(data.user_id)
