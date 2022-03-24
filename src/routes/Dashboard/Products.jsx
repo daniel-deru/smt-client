@@ -9,7 +9,6 @@ const HEADER = ["Name", "Price", "Expiry", "Uses", "Download", "Manage"]
 const Products = () => {
   const { products } = useSelector(state => state.products)
   const navigate = useNavigate()
-
   return (
     <ProductsPage>
 
@@ -20,13 +19,13 @@ const Products = () => {
       
       <div className="header">
         {HEADER.map(head => (
-          <div>{head}</div>
+          <div key={head}>{head}</div>
         ))}
       </div>
 
-        {products.map(product => (
-          <Product product={product} key={product.product_id}/>
-        ))}
+        {products.map(product => {
+          return <Product key={product.product_id} product={product} />
+        })}
 
 
     </ProductsPage>

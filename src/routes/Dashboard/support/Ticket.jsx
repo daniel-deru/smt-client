@@ -13,7 +13,7 @@ const Ticket = () => {
 
     const getTicket = async () => {
         try{
-            const ticketRequest = await axios.post("api/tickets/getticket", {id}, {withCredentials: true})
+            const ticketRequest = await axios.post("api/tickets/getticket", {id})
             if(ticketRequest.data.pass){
 
             }

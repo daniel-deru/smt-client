@@ -78,7 +78,7 @@ const Redeem = () => {
     }
     if(code && errorArray.length === 0){
 
-      let validCode = await axios.post("api/verify/appsumoCode", {code}, {withCredentials:true})
+      let validCode = await axios.post("api/verify/appsumoCode", {code})
       let pass = validCode.data.pass
 
       if(!pass){
@@ -107,7 +107,7 @@ const Redeem = () => {
     console.log("This is the valid data verification", validData)
     if(validData){
       try {
-        const check = await axios.post("api/appsumo/redeem", payload, {withCredentials: true})
+        const check = await axios.post("api/appsumo/redeem", payload)
         const data = check.data
         console.log("This is the return data from the server after the user is created.", data)
         if(data.pass){
@@ -125,7 +125,7 @@ const Redeem = () => {
   }
 
   const Resend = async () => {
-    let req = await axios.post("api/mail/signUp", {userId: user}, {withCredentials: true})
+    let req = await axios.post("api/mail/signUp", {userId: user})
     console.log(req.data)
   }
 

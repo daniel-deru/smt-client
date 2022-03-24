@@ -31,7 +31,7 @@ const Product = ({product: p}) => {
 
   const getActiveUses = async () => {
     try {
-      const request = await axios.post(`api/${product.name.toLowerCase()}/websites?action=get`, {}, {withCredentials: true})
+      const request = await axios.post(`api/${product.name.toLowerCase()}/websites?action=get`, {})
       if(request.data.pass){
         setActivations(request.data.accounts.length)
       }

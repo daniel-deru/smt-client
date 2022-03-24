@@ -85,7 +85,7 @@ const Account = () => {
     if(Object.keys(updatedData).length > 0){
       console.log(Object.keys(updatedData))
       try {
-        const request = await axios.post("users/account/update", updatedData, {withCredentials: true})
+        const request = await axios.post("users/account/update", updatedData)
         const response = request.data
         if(response.pass){
           console.log(response)
@@ -121,7 +121,7 @@ const Account = () => {
 
   const getCountries = async () => {
     try {
-      const countries = await axios("https://restcountries.com/v3.1/all", {withCredentials: true})
+      const countries = await axios("https://restcountries.com/v3.1/all")
       const filteredCountries = countries.data.map(country => {
         return ({
           name: country.name.common,

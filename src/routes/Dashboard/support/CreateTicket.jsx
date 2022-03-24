@@ -48,7 +48,7 @@ const CreateTicket = () => {
 
     if(!errorMessage){
       try {
-        const request = await axios.post("api/verify/email", {email: email}, {withCredentials: true})
+        const request = await axios.post("api/verify/email", {email: email})
         const response = request.data
         if(response.pass){
           setError("")
@@ -73,7 +73,7 @@ const CreateTicket = () => {
     const verified = await verify(name, email, subject, message)
     if(verified){
       // Create ticket
-      const ticket = await axios.post("api/tickets/create", {name, email, subject, message}, { withCredentials: true })
+      const ticket = await axios.post("api/tickets/create", {name, email, subject, message})
       navigate(`../ticket?id=${ticket.data.ticket_id}`)
     }
 

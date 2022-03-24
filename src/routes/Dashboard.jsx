@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 // import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,12 +17,12 @@ import axios from '../config/axios'
 
 
 const Dashboard = () => {
-
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { user } = useSelector((state) => state.user)
-  const { products } = useSelector((state) => state.products)
+  // const { user } = useSelector((state) => state.user)
+  // const { products } = useSelector((state) => state.products)
 
   // Get all the relevant data and store it in the redux store to reduce requests
   // Create endpoint where all the data will be sent from
@@ -31,15 +31,14 @@ const Dashboard = () => {
   // user products
   const getUser = async () => {
     try {
-      // console.log("This is before the navigate")
-      // navigate("../login")
-      // console.log("This is after the navigate")
-      const request = await axios.post("users/account/get", null, {withCredentials: true})
+      const request = await axios.post("users/account/get", null)
       const response = request.data
-      if(response.data){
-        console.log("This is the response from the dashboard request", response)
+      // console.log("This is the response from the dashboard request", response)
+      if(response){
         dispatch(setProducts(response.products))
         dispatch(login(response.user))
+        setLoading(false)
+
       }
     } catch (e) {
       console.log(e.response)
@@ -52,8 +51,9 @@ const Dashboard = () => {
   useEffect(async () => {
    
     await getUser()
+    // console.log(`is the data loading? ${loading}`)
   }, [])
-  if(Object.keys(user).length > 0 && products.length > 0){
+  if(!loading){
     return (
       <DashboardPage>
         <Header />
@@ -71,7 +71,7 @@ const Dashboard = () => {
   } else {
     return (
       <Loading>
-        {/* <h1>Loading</h1> */}
+        <h1 style={{color: "white"}}>Loading</h1>
         </Loading>
     )
   }

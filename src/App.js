@@ -24,11 +24,6 @@ import CreateTicket from "./routes/Dashboard/support/CreateTicket";
 import Tickets from "./routes/Dashboard/support/Tickets";
 import Ticket from "./routes/Dashboard/support/Ticket";
 
-import AdminLogin from "./routes/Admin/AdminLogin";
-import AdminDashboard from "./routes/Admin/AdminDashboard";
-import AdminTickets from "./routes/Admin/AdminTickets";
-import ReplyTicket from "./routes/Admin/ReplyTicket";
-
 
 function App() {
 
@@ -68,16 +63,6 @@ function App() {
                   <Route path="createticket" element={<CreateTicket/>}/>
                 </Route>
 
-              </Route>
-
-              <Route path="admin">
-                  <Route path="" element={<Navigate to="dashboard"/>}/>
-                  <Route path="login" element={<AdminLogin/>}/>
-                  <Route path="dashboard" element={<AdminDashboard/>}>
-                    <Route path="" element={<Navigate to="tickets" />}/>
-                    <Route path="tickets" element={<AdminTickets />}/>
-                    <Route path="ticket" element={<ReplyTicket />}/>
-                  </Route>
               </Route>
               
           </Routes>

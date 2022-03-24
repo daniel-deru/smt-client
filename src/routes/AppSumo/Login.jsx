@@ -36,11 +36,11 @@ const AppSumoLogin = () => {
             password: PasswordRef.current.value
         }
         try {
-            const login_request = await axios.post("users/login", payload, {withCredentials: true})
+            const login_request = await axios.post("users/login", payload)
             const response = login_request.data
             if(response.pass){
                 try {
-                    const request = await axios.post("users/account/get", null, {withCredentials: true})
+                    const request = await axios.post("users/account/get", null)
                     if(request.data){
                         dispatch(login(request.data.user))
                         dispatch(setProducts(request.data.products))

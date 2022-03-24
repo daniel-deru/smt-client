@@ -35,7 +35,7 @@ const SignUp = () => {
         let goodInfo = verify(payload)
         if(goodInfo){
             console.log("good to send")
-            const createAccount = await axios.post("users/signup", payload, {withCredentials: true})
+            const createAccount = await axios.post("users/signup", payload)
             let response = createAccount.data
             if(response.pass){
                 navigate("/login")
@@ -93,7 +93,7 @@ const SignUp = () => {
 
     const verifyUser = async () => {
         console.log(searchParams.get("id"))
-        let verified = await axios.get("api/verify/email?email="+searchParams.get("id"), {withCredentials: true})
+        let verified = await axios.get("api/verify/email?email="+searchParams.get("id"))
         let result = verified.data
         if(result.pass){
             EmailRef.current.value = result.email
