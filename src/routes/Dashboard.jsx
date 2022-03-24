@@ -31,9 +31,9 @@ const Dashboard = () => {
   // user products
   const getUser = async () => {
     try {
-      console.log("This is before the navigate")
-      navigate("../login")
-      console.log("This is after the navigate")
+      // console.log("This is before the navigate")
+      // navigate("../login")
+      // console.log("This is after the navigate")
       const request = await axios.post("users/account/get", null)
       const response = request.data
       if(response.data){
