@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
 import { Main, DashboardPage, DashboardNestedRoutes } from '../styled/Dashboard.styled'
-import { Loading } from '../styled/Loading.styled'
+import Loading from '../components/Loading'
 import { login } from '../store/user'
 import { setProducts } from "../store/products"
 import axios from '../config/axios'
@@ -70,9 +70,7 @@ const Dashboard = () => {
     )
   } else {
     return (
-      <Loading>
-        <h1 style={{color: "white"}}>Loading</h1>
-        </Loading>
+      <Loading/>
     )
   }
   
