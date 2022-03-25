@@ -1,8 +1,9 @@
 import axios from "axios";
-const dev = "http://localhost:8000/"
-const prod = "https://api.smartmetatec.com/"
+
+const urlRegex = /^http(s)?:\/\/api\.smartmetatec\.com\//gi
+const url = urlRegex.test(window.location.href) ? "https://api.smartmetatec.com/" : "http://localhost:8000/"
+
 export default axios.create({
-    baseURL: dev,
-    // headers: {"Access-Control-Allow-Origin": "https://account.smartmetatec.com"},
+    baseURL: url,
     withCredentials: true
 })
