@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useLayoutEffect } from "react"
+import { useState, useRef, useEffect } from "react"
 import { FaAngleDown } from "react-icons/fa"
 import { DialDrop } from "../styled/Components/DialCodeDropDown.styled"
 
@@ -7,7 +7,6 @@ const DialCodeDropDown = ({countries, code: initCode, getCode: setCountryCode}) 
 
     const [showCodes, setShowCodes] = useState(false)
     const [flag, setFlag] = useState(null)
-    const [codeState, setCodeState] = useState(initCode)
 
     const displayCodeRef = useRef()
 
@@ -15,21 +14,19 @@ const DialCodeDropDown = ({countries, code: initCode, getCode: setCountryCode}) 
         const code = `${country?.code?.root}${country?.code?.suffixes && country?.code.suffixes[0]}`
         displayCodeRef.current.innerText = code
         setCountryCode(code)
-        getFlag(codeState)
-        // console.log("+"+code.join(""))
-        // getFlag("+"+code.join(""))
+        console.log(country.flag)
+        setFlag(country.flag)
 
     }
 
     const getFlag = (code) => {
         const country = countries.filter(country => `${country?.code?.root}${country?.code?.suffixes && country?.code.suffixes[0]}` == code)
-        // console.log(country)
         setFlag(country[0]?.flag)
     }
 
     useEffect(() => {
         getFlag(initCode)
-    }, [initCode])
+    }, [flag])
     
     return (
         <DialDrop onClick={() => setShowCodes(!showCodes)} show={showCodes}>
