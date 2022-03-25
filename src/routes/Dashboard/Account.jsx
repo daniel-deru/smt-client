@@ -5,6 +5,7 @@ import { useNavigate } from "react-router"
 
 import CountryDropDown from "../../components/CountryDropDown"
 import DialCodeDropDown from "../../components/DialCodeDropDown"
+import Loading from "../../components/Loading"
 import axios from "../../config/axios"
 
 import { AccountPage } from "../../styled/Dashboard/Account.styled"
@@ -120,7 +121,7 @@ const Account = () => {
       postalRef.current.value = user.post_code
       address1Ref.current.value = user.address1
       address2Ref.current.value = user.address2
-      console.log(user)
+      // console.log(user)
     }
 
   }
@@ -154,8 +155,9 @@ const Account = () => {
   useEffect(async () => {
     await getCountries()
     fillInFields()
-    console.log("In the account component", countryCode)
   }, [user, countryCode])
+
+  if(countries.length <= 0) return <Loading />
   return (
     <AccountPage>
         <form >

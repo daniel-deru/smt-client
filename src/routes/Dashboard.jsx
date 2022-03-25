@@ -58,13 +58,12 @@ const Dashboard = () => {
       <DashboardPage>
         <Header />
         <Main>
-  
+
           <Nav />
-  
           <DashboardNestedRoutes>
             <Outlet/>
           </DashboardNestedRoutes>
-  
+          
         </Main>
       </DashboardPage>
     )

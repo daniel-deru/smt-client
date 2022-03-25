@@ -20,6 +20,7 @@ export const DashboardNestedRoutes = styled.div`
     flex: 5;
     margin: 20px;
     overflow: auto;
+    position: relative;
     ::-webkit-scrollbar {
         width: 7px;
     }

@@ -24,6 +24,15 @@ export const DialDrop = styled.div`
         }
     }
 
+    #dial-code {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        img {
+            margin-right: 5px;
+        }
+    }
+
     ul {
         display: ${(props) => props.show ? "block" : "none"};
         position: absolute;

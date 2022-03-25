@@ -24,13 +24,13 @@ export const NavComponent = styled.nav`
     flex: 1;
     border-right: 2px solid ${({theme}) => theme.colors.green};
     section {
-        img {
-            height: 100px;
-            aspect-ratio: 1/1;
-            border: 1px solid grey;
-            border-radius: 50%;
-            margin: 2rem auto 1rem auto ;
+        svg {
             display: block;
+            text-align: center;
+            width: fit-content;
+            margin: 1rem auto;
+            color: lightgray;
+            font-size: 7em;
         }
         h4 {
             text-align: center;
