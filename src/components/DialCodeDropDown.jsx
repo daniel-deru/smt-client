@@ -3,7 +3,7 @@ import { FaAngleDown } from "react-icons/fa"
 import { DialDrop } from "../styled/Components/DialCodeDropDown.styled"
 
 
-const DialCodeDropDown = ({countries}) => {
+const DialCodeDropDown = ({countries, code, getCode: setCountryCode}) => {
     const [showCodes, setShowCodes] = useState(false)
 
     const displayCodeRef = useRef()
@@ -12,15 +12,15 @@ const DialCodeDropDown = ({countries}) => {
         const string = e.target.innerText
         const code = string.match(/[0-9]*/gi)
         displayCodeRef.current.innerText = "+"+code.join("")
-        console.log(code.join(""))
+        // console.log(code.join(""))
+        setCountryCode("+"+code.join(""))
 
     }
-
     return (
         <DialDrop onClick={() => setShowCodes(!showCodes)} show={showCodes}>
             <div>
                 <FaAngleDown />
-                <span ref={displayCodeRef} id="dial-code">+00</span>
+                <span ref={displayCodeRef} id="dial-code">{code}</span>
             </div>
             <ul className="drop-down">
                 {countries.map(country => (

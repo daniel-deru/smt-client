@@ -14,11 +14,13 @@ const Account = () => {
   const navigate = useNavigate()
 
   const [countries, setCountries] = useState([])
+  const [countryCode, setCountryCode] = useState("+00")
 
   const firstNameRef = useRef()
   const lastNameRef = useRef()
   const displayNameRef = useRef()
   const contactEmailRef = useRef()
+  // const countryCodeRef = useRef("+00")
   const contactNumberRef = useRef()
   const companyNameRef = useRef()
   const provinceRef = useRef()
@@ -37,7 +39,8 @@ const Account = () => {
     const last_name = lastNameRef.current.value
     const display_name = displayNameRef.current.value
     const contact_email = contactEmailRef.current.value
-    const contact_number = document.getElementById("dial-code").innerText + contactNumberRef.current.value
+    const country_code = countryCode
+    const contact_number = contactNumberRef.current.value
     const company_name = companyNameRef.current.value
     const country = document.getElementById("country").value
     const province = provinceRef.current.value
@@ -51,6 +54,7 @@ const Account = () => {
       last_name,
       display_name,
       contact_email,
+      country_code,
       contact_number,
       company_name,
       country,
@@ -82,8 +86,8 @@ const Account = () => {
 
   const update = async () => {
     const updatedData = filterData()
+    console.log(updatedData)
     if(Object.keys(updatedData).length > 0){
-      console.log(Object.keys(updatedData))
       try {
         const request = await axios.post("users/account/update", updatedData)
         const response = request.data
@@ -107,6 +111,7 @@ const Account = () => {
       lastNameRef.current.value = user.last_name
       displayNameRef.current.value = user.display_name
       contactEmailRef.current.value = user.contact_email
+      setCountryCode(user.country_code)
       contactNumberRef.current.value = user.contact_number
       companyNameRef.current.value = user.company_name
       document.getElementById("country").value = user.country
@@ -115,6 +120,7 @@ const Account = () => {
       postalRef.current.value = user.post_code
       address1Ref.current.value = user.address1
       address2Ref.current.value = user.address2
+      console.log(user)
     }
 
   }
@@ -142,11 +148,14 @@ const Account = () => {
     }
   }
 
+  // const getCountryCode = (code) => countryCodeRef.current = code
+
 
   useEffect(async () => {
     await getCountries()
     fillInFields()
-  }, [user])
+    console.log("In the account component", countryCode)
+  }, [user, countryCode])
   return (
     <AccountPage>
         <form >
@@ -178,7 +187,7 @@ const Account = () => {
               <div className='field-container'>
                 <label>Contact Number</label>
                 <div className="number">
-                  <DialCodeDropDown countries={countries}/>
+                  <DialCodeDropDown countries={countries} code={countryCode} getCode={setCountryCode}/>
                   <input type="text" ref={contactNumberRef} />
                 </div>
 
