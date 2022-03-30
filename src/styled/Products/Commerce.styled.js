@@ -29,12 +29,26 @@ export const CommercePage = styled.div`
     .add {
         width: 70%;
         margin: 2rem auto;
+        display: flex;
+        justify-content: space-between;
+
+        select {
+            font-size: 1em;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: ${({theme}) => theme.colors.green};
+            color: black;
+            outline: none;
+            border: 1px solid transparent;
+            margin: 0px 10px;
+            cursor: pointer;
+        }
 
         input {
             font-size: 1em;
             border-radius: 5px;
             padding: 5px;
-            width: 80%;
+            width: 100%;
             border: 1px solid black;
             outline: none;
 

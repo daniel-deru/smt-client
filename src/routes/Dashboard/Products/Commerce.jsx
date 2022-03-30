@@ -17,14 +17,19 @@ const Commerce = () => {
   const { products } = useSelector(state => state.products)
 
   const websiteRef = useRef()
+  const protocolRef = useRef()
 
   const [websiteList, setWebsiteList] = useState([])
   const [error, setError] = useState("")
 
 
   const addWebsite = async () => {
-    const website = websiteRef.current.value
+    let website = websiteRef.current.value
+    const protocol = protocolRef.current.value
     const date = new Date(Date.now()).toLocaleString()
+
+    const errorRegex = /^(http(s)?:\/\/)?(www\.)?/
+    website = protocol + website.replace(errorRegex, "")
 
     const commerceProduct = getProduct()
 
@@ -35,7 +40,7 @@ const Commerce = () => {
     else if(inList.length > 0) return setError("This website has already been added")
     else if(!validWebsite(website)) return setError("The website you entered is not valid.")
     else {
-      const request = await axios.post("api/commerce/websites?action=add", {website, date})
+      const request = await axios.post("api/commerce/websites?action=add", {website: website, date})
       if(request.data.pass){
 
         setWebsiteList(prevList => ([...prevList, {website, date}]))
@@ -80,7 +85,7 @@ const Commerce = () => {
     return products.filter(product => product.name === "Commerce")[0]
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     getwebsites()
   }, [])
 
@@ -93,6 +98,10 @@ const Commerce = () => {
         <main>
 
           <div className="add">
+            <select name="" id="" ref={protocolRef}>
+              <option value="https://" defaultValue>https://</option>
+              <option value="http://" >http://</option>
+            </select>
             <input type="text" ref={websiteRef}/>
             <button onClick={() => addWebsite()}>Add</button>  
           </div>

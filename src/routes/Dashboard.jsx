@@ -48,9 +48,19 @@ const Dashboard = () => {
       }
     } 
   }
-  useEffect(async () => {
-   
-    await getUser()
+  useEffect(() => {
+    const checkServer = async () => {
+      try {
+        const request = await axios.post("api/verify/commerce/user", {domain: "https://apicheck.tecnero.com"})
+        // const request = await axios.post("api/verify/appsumoCode", {code: "https://apicheck.tecnero.com"})
+        console.log(request.data)
+      } catch (err) {
+        console.log("This is the error", err.response)
+      }
+
+    }
+    checkServer()
+    getUser()
     // console.log(`is the data loading? ${loading}`)
   }, [])
   if(!loading){
