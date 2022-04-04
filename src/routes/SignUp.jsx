@@ -92,7 +92,7 @@ const SignUp = () => {
     }
 
     const verifyUser = async () => {
-        console.log(searchParams.get("id"))
+        if(!searchParams.get("id")) navigate("/login")
         let verified = await axios.get("api/verify/email?email="+searchParams.get("id"))
         let result = verified.data
         if(result.pass){
