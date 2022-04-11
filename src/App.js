@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom"
 
 import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
+import CreateAccount from "./routes/CreateAccount";
 import ForgotPassword from "./routes/ForgotPassword";
 import ResetPassword from "./routes/ResetPassword";
 
@@ -44,6 +45,7 @@ function App() {
 
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/create-account" element={<CreateAccount />} />
 
               <Route path="/dashboard" element={<Dashboard/>}>
 
