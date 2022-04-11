@@ -66,4 +66,28 @@ export const CreateAccountPage = styled.main`
         }
     }
 
+    .complete {
+        h1 {
+            text-align: center;
+            font-size: 3em;
+        }
+        
+        button {
+            display: block;
+            margin: auto;
+            font-size: 2em;
+            background-color: ${({theme}) => theme.colors.green};
+            color: black;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            padding: 5px 40px;
+            cursor: pointer;
+
+            &:active {
+                background-color: ${({theme}) => theme.colors.lightBlue};
+                color: white;
+            }
+        }
+    }
+
 `

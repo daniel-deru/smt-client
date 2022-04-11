@@ -34,7 +34,6 @@ const SignUp = () => {
 
         let goodInfo = verify(payload)
         if(goodInfo){
-            console.log("good to send")
             const createAccount = await axios.post("users/signup", payload)
             let response = createAccount.data
             if(response.pass){

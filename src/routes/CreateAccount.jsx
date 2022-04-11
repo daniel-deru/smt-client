@@ -26,7 +26,8 @@ const CreateAccount = () => {
                 lastName: lastNameRef.current.value,
                 email: emailRef.current.value
             }
-            const createRequest = await axios("users/create", payload)
+            const createRequest = await axios.post("users/create", payload)
+            console.log(createRequest.data)
             if(!createRequest.data.pass) return setErrors({...errors, global: "The user already exists"})
             setUserId(createRequest.data.userId)
 
@@ -62,7 +63,7 @@ const CreateAccount = () => {
                 </div>
             </form> : 
             
-            <div>
+            <div className='complete'>
                 <h1>You did it!!</h1>
                 <p>a mail will be sent to your mailbox. In the mail you will find further instructions on how to activate your account.</p>
                 <div>
