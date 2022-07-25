@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useRef, useState, useEffect } from 'react'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import axios from '../config/axios'
 
 import { CreateAccountPage } from "../styled/routes/CreateAccount.styled"
@@ -8,6 +8,10 @@ import { checkEmail, checkName } from '../utils/checkData'
 const CreateAccount = () => {
     const [errors, setErrors] = useState({first: "", last: "", email: "", global: ""})
     const [userId, setUserId] = useState()
+    const [requestUrl, setRequestUrl] = useState(null)
+
+    const [searchParams] = useSearchParams()
+    const navigate = useNavigate()
 
     const firstNameRef = useRef()
     const lastNameRef = useRef()
@@ -39,6 +43,10 @@ const CreateAccount = () => {
         const resendRequest = await axios.post("api/mail/createUser", {userId})
         
     }
+
+    useEffect(() => {
+
+    }, [])
     return (
         <CreateAccountPage>
             <div>

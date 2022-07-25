@@ -52,7 +52,9 @@ const Commerce = () => {
 
 
   const validWebsite = (website) => {
-    const websiteRegEx = /^(https:\/\/)?(\w+\.)?\w+\.\w{1,9}(\.{1,5})?$/
+    // const websiteRegEx = /^(https:\/\/)?(\w+\.)?\w+\.\w{1,9}(\.{1,5})?$/
+    console.log(website)
+    const websiteRegEx = /^(https:\/\/)?([\w\d\-]+\.)?[\w\d\-]+\.\w{1,5}(\.\w{1,5})?$/
     return websiteRegEx.test(website)
     
   }
